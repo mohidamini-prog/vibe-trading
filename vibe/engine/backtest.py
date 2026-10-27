@@ -116,15 +116,17 @@ def prepare(df):
 # ============================================================
 def backtest(df, signal_fn, atr_mult_sl=2.0, rr=[1.5, 2.5, 4.0],
              max_hold=30, cost_bps=5.0, position_pct=0.10,
-             equity_start=100000.0):
+             equity_start=100000.0, _prepared=False):
     """
     Einfacher Long-Backtest über einen vorbereiteten DataFrame.
 
     Kostet cost_bps pro Trade (Basis-Punkte, round-trip).
     position_pct = Anteil des Eigenkapitals pro Position (Kapitalbegrenzung).
+    _prepared=True überspringt prepare() (Frame ist schon vorbereitet).
     Returns: dict mit Trades, Statistik.
     """
-    df = prepare(df)
+    if not _prepared:
+        df = prepare(df)
     sig = signal_fn(df).fillna(False).values
     close = df["Close"].values
     high = df["High"].values
