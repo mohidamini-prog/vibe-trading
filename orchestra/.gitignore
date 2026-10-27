@@ -1,0 +1,10 @@
+# Orchestra — Cache & Zustand (nicht versionieren)
+# Patterns sind relativ zu diesem Ordner (orchestra/)
+data/cache/*.db
+data/cache/*.db-*
+data/state/*.db
+data/state/*.db-*
+data/state/*.json
+data/reports/*.json
+__pycache__/
+*.pyc

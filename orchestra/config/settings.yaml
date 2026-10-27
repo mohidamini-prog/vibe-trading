@@ -1,0 +1,76 @@
+# ============================================================
+# Orchestra — Zentrale Einstellungen (das "Fundament")
+# ============================================================
+# Alle Parameter an EINER Stelle. Kein Hardcode in Agenten/Dirigent.
+# Werte werden aus dem Backtesting in die Agenten gefüttert (zugeschnitten).
+
+# --- Symbole & Universum ---
+universe:
+  symbols: ["AAPL", "MSFT", "NVDA", "META", "TSLA", "AMZN", "GOOGL"]
+  markets: ["US", "DAX"]
+
+# --- Zeitrahmen (Tier 1 läuft immer) ---
+timeframes:
+  fast: "1m"        # schnelle Kerzen (Tier 1)
+  base: "5m"        # Basis-Kerzen
+  slow: "15m"       # langsam, nur bei Bedarf (Tier 2)
+
+# --- Daten-Tiers (Gewichte & Kadenz) ---
+tiers:
+  tier1:                     # WICHTIG (60%) — läuft immer
+    weight: 0.60
+    interval_sec: 300        # alle 5 min
+    max_candles: 100         # datensparsam: max 100 Kerzen
+    fields: ["close", "volume"]   # nur das Nötigste
+  tier2:                     # WENIGER (25%) — nur bei Bedarf
+    weight: 0.25
+    interval_sec: 1800       # alle 30 min
+    enabled_on_alert: true   # oder wenn Tier 1 Alarm schlägt
+  tier3:                     # BEILAGE (15%) — nur als Filter
+    weight: 0.15
+    interval_sec: 3600       # stündlich
+    max_items: 5             # nur Top-Headlines, kein Volltext
+
+# --- Dirigent: gewichtete Abstimmung ---
+conductor:
+  buy_threshold: 0.5     # S > +0.5 => BUY
+  sell_threshold: -0.5   # S < -0.5 => SELL
+  weights:               # START-Gewichte (werden nachts dynamisch optimiert)
+    momentum: 0.25
+    meanrev: 0.20
+    vola: 0.15
+    quant: 0.25
+    news: 0.15
+  alpha: 0.05            # Lernrate für dynamische Gewichte
+  lookback_trades: 20    # Sharpe-Fenster der letzten N Trades
+
+# --- Agenten-spezifische, zugeschnittene Parameter (aus Backtesting) ---
+agents:
+  momentum:
+    ema_fast: 9
+    ema_slow: 21
+    rsi_period: 14
+    rsi_buy_max: 70      # RSI < 70 => kaufbar im Trend
+    rsi_sell_min: 30     # RSI > 30 => verkaufbar im Abwärtstrend
+    adx_min: 25          # harter Trend-Filter
+    chop_max: 55         # kein Seitwärts-Chop
+  meanrev:
+    sma_period: 20
+    z_entry: 2.0         # |z| > 2 => überkauft/überverkauft
+    z_exit: 0.5
+    atr_stop_mult: 1.5   # ATR-basierter Stop
+  vola:
+    atr_period: 14
+    atr_spike_mult: 2.5  # ATR-Explosion => Veto (0)
+    spread_max_pct: 0.5  # zu breiter Spread => Veto
+    max_risk_pct: 2.0    # max Risiko pro Trade
+  quant:
+    n_qubits: 4          # 4 Qubits => 16 Zustände (Superposition)
+    n_layers: 2          # 2 variational Layers
+    features: ["ret", "vola", "rsi", "vol_z"]   # nur 4 Features, datenarm
+  news:
+    sentiment_window: 6        # Stunden
+    earnings_days_ahead: 1     # Earnings morgen => Veto
+    insider_cluster_days: 7    # 3+ Insider in 7 Tagen => Signal
+    insider_cluster_min: 3
+    max_news_items: 5
