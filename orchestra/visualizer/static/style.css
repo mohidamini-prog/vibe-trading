@@ -1,0 +1,90 @@
+/* Orchestra Trading Desk — dunkles Space-Theme */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0a0e1a;
+  --card: #121a2e;
+  --border: #1f2a45;
+  --text: #d7e0f2;
+  --dim: #6b7a99;
+  --buy: #22c55e;
+  --sell: #ef4444;
+  --hold: #94a3b8;
+  --accent: #7c5cff;
+}
+body {
+  background: radial-gradient(1200px 600px at 70% -10%, #1a1440 0%, var(--bg) 55%);
+  color: var(--text);
+  font-family: "Segoe UI", system-ui, sans-serif;
+  min-height: 100vh;
+  padding: 20px;
+}
+header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+h1 { font-size: 1.4rem; letter-spacing: .5px; }
+h1 .sub { font-size: .8rem; color: var(--dim); font-weight: 400; margin-left: 8px; }
+.status { display: flex; align-items: center; gap: 8px; font-size: .8rem; color: var(--dim); }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: #f59e0b; display: inline-block; }
+.dot.on { background: var(--buy); box-shadow: 0 0 8px var(--buy); }
+.dot.off { background: var(--sell); }
+
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0));
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-bottom: 16px;
+  backdrop-filter: blur(4px);
+}
+
+/* Dirigent */
+#conductor { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.cond-left { display: flex; align-items: center; gap: 12px; }
+.cond-icon { font-size: 2rem; }
+.cond-label { font-size: .7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--dim); }
+.cond-symbol { font-size: 1.2rem; font-weight: 600; }
+.cond-mid { text-align: center; flex: 1; }
+.decision { font-size: 2rem; font-weight: 800; letter-spacing: 1px; }
+.cond-stats { display: flex; gap: 16px; justify-content: center; margin-top: 6px; font-size: .85rem; color: var(--dim); }
+.cond-stats b { color: var(--text); }
+.cond-right { text-align: right; }
+.veto { background: rgba(239,68,68,.15); color: var(--sell); border: 1px solid var(--sell);
+        border-radius: 8px; padding: 4px 10px; font-size: .75rem; font-weight: 600; }
+.veto.hidden { display: none; }
+.time { font-size: .75rem; color: var(--dim); margin-top: 6px; }
+
+/* Chart */
+.card-title { font-size: .85rem; color: var(--dim); margin-bottom: 10px; }
+.card-title .hint { font-size: .7rem; }
+.chart canvas { width: 100%; height: 120px; display: block; }
+
+/* Roboter-Grid */
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 14px; }
+.robot-card {
+  background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: border-color .3s, transform .2s;
+}
+.robot-card.buy { border-color: var(--buy); box-shadow: 0 0 16px rgba(34,197,94,.25); }
+.robot-card.sell { border-color: var(--sell); box-shadow: 0 0 16px rgba(239,68,68,.25); }
+.robot-card.veto-card { border-color: #f59e0b; }
+.robot-card:hover { transform: translateY(-3px); }
+.robot-head { font-size: 2.4rem; line-height: 1; }
+.robot-name { font-weight: 700; margin-top: 6px; font-size: .95rem; }
+.robot-role { font-size: .7rem; color: var(--dim); }
+.robot-vote { font-size: 1.6rem; font-weight: 800; margin-top: 6px; }
+.robot-conf { font-size: .75rem; color: var(--dim); }
+.robot-weight { font-size: .7rem; color: var(--accent); margin-top: 2px; }
+.robot-reason {
+  font-size: .68rem; color: var(--dim); margin-top: 8px; min-height: 2em;
+  word-break: break-word;
+}
+/* Augen der Roboter animieren je nach Vote */
+.robot-card .eyes { font-size: 1rem; letter-spacing: 2px; }
+@keyframes blink { 0%,90%,100% { opacity: 1; } 95% { opacity: .3; } }
+.robot-card .eyes { animation: blink 3s infinite; }
+
+footer { text-align: center; font-size: .7rem; color: var(--dim); padding: 12px; }

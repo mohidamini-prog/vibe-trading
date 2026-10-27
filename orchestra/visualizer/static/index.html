@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>🎼 Orchestra — Trading Desk</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <h1>🎼 Orchestra <span class="sub">Trading Desk · Echtzeit</span></h1>
+  <div class="status"><span id="conn" class="dot"></span> <span id="connText">verbinde…</span></div>
+</header>
+
+<!-- Dirigent / Gesamt-Entscheidung -->
+<section id="conductor" class="card">
+  <div class="cond-left">
+    <div class="cond-icon">🎯</div>
+    <div>
+      <div class="cond-label">Dirigent</div>
+      <div id="symbol" class="cond-symbol">—</div>
+    </div>
+  </div>
+  <div class="cond-mid">
+    <div id="decision" class="decision">…</div>
+    <div class="cond-stats">
+      <span>S <b id="sval">—</b></span>
+      <span>Stärke <b id="strength">—</b></span>
+      <span>Conf <b id="conf">—</b></span>
+    </div>
+  </div>
+  <div class="cond-right">
+    <div id="veto" class="veto hidden">⚠️ VETO aktiv</div>
+    <div id="time" class="time">—</div>
+  </div>
+</section>
+
+<!-- S-Verlauf -->
+<section class="card">
+  <div class="card-title">S-Verlauf <span class="hint">letzte 30 Zyklen</span></div>
+  <div class="chart"><canvas id="sChart" width="900" height="120"></canvas></div>
+</section>
+
+<!-- Die 5 Roboter -->
+<section id="agents" class="grid">
+  <!-- Roboter werden per JS eingefügt -->
+</section>
+
+<footer>🛸 isolierte Subagenten · numpy-only · ARM-tauglich · <span id="upd">—</span></footer>
+<script src="/static/app.js"></script>
+</body>
+</html>
