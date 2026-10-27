@@ -1,0 +1,409 @@
+//@version=5
+indicator("Muster-Scanner v9.1 (Mohid Edition)", overlay=true, max_labels_count=500, max_lines_count=100)
+
+// ============================================================
+// v9.1 - Optimierungen für Mohid (Trend + Volumen + Breakout + Fakeout-Schutz)
+// ============================================================
+pivLen    = input.int(5, "Pivot-Länge (Bestätigung nach N Kerzen)", minval=2, group="Pivots")
+useAtrTol = input.bool(true, "Toleranz gleiche Höhe nach ATR (aus = fix in %)", group="Pivots")
+tolAtr    = input.float(0.5, "Toleranz gleiche Höhe (× ATR)", minval=0.05, step=0.05, group="Pivots")
+tol       = input.float(1.5, "Toleranz gleiche Höhe (%), nur wenn ATR aus", minval=0.1, step=0.1, group="Pivots") / 100
+minSep    = input.int(5, "min. Abstand zwischen Pivots (Kerzen)", minval=2, group="Pivots")
+maxSpan   = input.int(80, "max. Länge eines Musters (Kerzen)", minval=10, group="Pivots")
+atrLen    = input.int(14, "ATR-Länge", minval=1, group="Pivots")
+
+showSKS  = input.bool(true, "Schulter-Kopf-Schulter (+ invers)", group="Muster")
+showDT   = input.bool(true, "Doppelboden / Doppelspitze", group="Muster")
+showTR   = input.bool(true, "Dreifachboden / Dreifachtop", group="Muster")
+showTRI  = input.bool(true, "Aufsteigendes / absteigendes Dreieck", group="Muster")
+showREC  = input.bool(true, "Rechteck (bullisch / bärisch)", group="Muster")
+showSYM  = input.bool(true, "Symmetrisches Dreieck", group="Muster")
+showMEG  = input.bool(true, "Megaphon (Broadening Top / Bottom)", group="Muster")
+showWED  = input.bool(true, "Keil (Falling / Rising Wedge)", group="Muster")
+showV    = input.bool(true, "V-Top / V-Bottom", group="Muster")
+showCRS  = input.bool(true, "Golden Cross / Death Cross", group="Muster")
+vMinMove = input.float(2.0, "V: min. Bewegung je Seite (%)", minval=0.5, step=0.5, group="Muster") / 100
+vMaxSpan = input.int(25, "V: max. Länge (Kerzen)", minval=5, group="Muster")
+
+volLen     = input.int(20, "Volumen-Mittel (Kerzen)", minval=1, group="Qualität")
+volMinMult = input.float(1.3, "Ausbruch mit Volumen ab x × Ø (Mohid Filter)", minval=0.1, step=0.1, group="Qualität")
+showSweep  = input.bool(true, "Sweeps (Fehlausbruch / Fakeout-Warnung) anzeigen", group="Qualität")
+
+evalBars    = input.int(10, "Auswertung: Kerzen nach dem Ausbruch", minval=1, group="Statistik")
+evalAtrMult = input.float(1.0, "Treffer: Bewegung in Ausbruchsrichtung >= x × ATR", minval=0.1, step=0.1, group="Statistik")
+
+htfInput     = input.timeframe("D", "Trend-Zeitrahmen", group="Trend")
+dailyFastLen = input.int(50, "Trend-EMA schnell", minval=1, group="Trend")
+dailySlowLen = input.int(200, "Trend-EMA langsam", minval=1, group="Trend")
+onlyTrend    = input.bool(true, "Nur Ausbrüche mit Trend anzeigen und alarmieren", group="Trend")
+
+showStruct = input.bool(true, "BOS / CHoCH anzeigen", group="Struktur")
+showLab  = input.bool(true, "Ausbruchs-Labels anzeigen", group="Anzeige")
+showOpen = input.bool(true, "Offene Muster als Linie mit Beschriftung zeichnen", group="Anzeige")
+tblNear  = input.float(0.5, "Tabelle: max. Abstand zum Ausbruchsniveau (× Musterhöhe)", minval=0.1, maxval=1.0, step=0.1, group="Anzeige")
+
+// ============ GLOBALE WERTE ============
+atrNow    = ta.atr(atrLen)
+volAvgNow = ta.sma(volume, volLen)
+volNow    = volume >= volMinMult * volAvgNow
+
+// Trendkontext: Tageschart
+dEmaFast  = request.security(syminfo.tickerid, htfInput, ta.ema(close, dailyFastLen), lookahead=barmerge.lookahead_off)
+dEmaSlow  = request.security(syminfo.tickerid, htfInput, ta.ema(close, dailySlowLen), lookahead=barmerge.lookahead_off)
+dClose    = request.security(syminfo.tickerid, htfInput, close, lookahead=barmerge.lookahead_off)
+trendUp   = dEmaFast > dEmaSlow and dClose > dEmaSlow
+trendDown = dEmaFast < dEmaSlow and dClose < dEmaSlow
+
+// ============ SPEICHER ============
+var array<float> pP = array.new<float>()
+var array<int>   pB = array.new<int>()
+var array<int>   pT = array.new<int>()
+
+var array<float>   lvlA  = array.new<float>(18, na)
+var array<int>     dirA  = array.new<int>(18, 0)
+var array<int>     barA  = array.new<int>(18, 0)
+var array<string>  nameA = array.new<string>(18, "")
+var array<int>     swA   = array.new<int>(18, 0)
+var array<string>  lastA = array.new<string>(1, "-")
+var array<int>     lastKA = array.new<int>(1, 0)
+
+var array<float> hiA = array.new<float>(18, na)
+var array<float> loA = array.new<float>(18, na)
+
+var array<line>  patLines  = array.new<line>()
+var array<label> patLabels = array.new<label>()
+
+var float  shP       = na
+var bool   shUsed    = false
+var float  slP       = na
+var bool   slUsed    = false
+var int    structDir = 0
+var string lastEvt   = "-"
+
+var array<int> stN  = array.new<int>(18, 0)
+var array<int> stW  = array.new<int>(18, 0)
+var array<int> stNV = array.new<int>(18, 0)
+var array<int> stWV = array.new<int>(18, 0)
+var array<int> stNT = array.new<int>(18, 0)
+var array<int> stWT = array.new<int>(18, 0)
+var array<int> stNG = array.new<int>(18, 0)
+var array<int> stWG = array.new<int>(18, 0)
+
+var array<int>   evAct = array.new<int>(50, 0)
+var array<int>   evBar = array.new<int>(50, 0)
+var array<int>   evK   = array.new<int>(50, 0)
+var array<int>   evDir = array.new<int>(50, 0)
+var array<int>   evVol = array.new<int>(50, 0)
+var array<int>   evTr  = array.new<int>(50, 0)
+var array<float> evPx  = array.new<float>(50, 0.0)
+var array<float> evAt  = array.new<float>(50, 0.0)
+var array<float> evExt = array.new<float>(50, 0.0)
+var int sweepCnt = 0
+
+// ============ FUNKTIONEN ============
+f_tol(float a, float b, float atrRef) =>
+    useAtrTol ? (math.abs(a - b) <= tolAtr * atrRef) : (math.abs(a - b) / math.max(math.abs(a), math.abs(b)) <= tol)
+
+f_set(int k, float lv, int d, string nm, float hi, float lo) =>
+    array.set(lvlA, k, lv)
+    array.set(dirA, k, d)
+    array.set(barA, k, bar_index - pivLen)
+    array.set(nameA, k, nm)
+    array.set(swA, k, 0)
+    array.set(hiA, k, hi)
+    array.set(loA, k, lo)
+    array.set(lastA, 0, nm + " (" + (d == 1 ? "bullisch" : "bärisch") + ")")
+    array.set(lastKA, 0, k)
+
+f_pct(int wins, int tries) =>
+    tries > 0 ? str.tostring(math.round(100.0 * wins / tries), "#") + " % (n=" + str.tostring(tries) + ")" : "keine Auswertung"
+
+// ============ PIVOTS ============
+ph = ta.pivothigh(high, pivLen, pivLen)
+pl = ta.pivotlow(low, pivLen, pivLen)
+
+if not na(ph)
+    array.push(pP, ph)
+    array.push(pB, bar_index - pivLen)
+    array.push(pT, 1)
+    shP    := ph
+    shUsed := false
+if not na(pl)
+    array.push(pP, pl)
+    array.push(pB, bar_index - pivLen)
+    array.push(pT, -1)
+    slP    := pl
+    slUsed := false
+
+for k = 1 to 2
+    if array.size(pP) > 30
+        array.shift(pP)
+        array.shift(pB)
+        array.shift(pT)
+
+// ============ MUSTER-ERKENNUNG ============
+n = array.size(pP)
+if newPiv and n >= 5
+    p1 = array.get(pP, n - 1)
+    p2 = array.get(pP, n - 2)
+    p3 = array.get(pP, n - 3)
+    p4 = array.get(pP, n - 4)
+    p5 = array.get(pP, n - 5)
+    t1 = array.get(pT, n - 1)
+    t2 = array.get(pT, n - 2)
+    t3 = array.get(pT, n - 3)
+    t4 = array.get(pT, n - 4)
+    t5 = array.get(pT, n - 5)
+    b1 = array.get(pB, n - 1)
+    b3 = array.get(pB, n - 3)
+    b4 = array.get(pB, n - 4)
+    b5 = array.get(pB, n - 5)
+
+    alt3 = t1 != t2 and t2 != t3
+    alt4 = alt3 and t3 != t4
+    alt5 = alt4 and t4 != t5
+    span3 = b1 - b3
+    span4 = b1 - b4
+    span5 = b1 - b5
+
+    hi3 = math.max(p1, math.max(p2, p3))
+    lo3 = math.min(p1, math.min(p2, p3))
+    hi4 = math.max(hi3, p4)
+    lo4 = math.min(lo3, p4)
+    hi5 = math.max(hi4, p5)
+    lo5 = math.min(lo4, p5)
+
+    if showSKS and alt5 and span5 <= maxSpan
+        if t1 == 1 and p3 > p5 and p3 > p1 and f_tol(p5, p1, atrNow)
+            f_set(0, (p4 + p2) / 2, -1, "Schulter-Kopf-Schulter", hi5, lo5)
+        if t1 == -1 and p3 < p5 and p3 < p1 and f_tol(p5, p1, atrNow)
+            f_set(1, (p4 + p2) / 2, 1, "Inverse Schulter-Kopf-Schulter", hi5, lo5)
+
+    if showDT and alt3 and span3 >= minSep and span3 <= maxSpan
+        if t1 == -1 and p2 > math.max(p1, p3) and f_tol(p1, p3, atrNow)
+            f_set(3, p2, 1, "Doppelboden", hi3, lo3)
+        if t1 == 1 and p2 < math.min(p1, p3) and f_tol(p1, p3, atrNow)
+            f_set(2, p2, -1, "Doppelspitze", hi3, lo3)
+
+    if showTR and alt5 and span5 <= maxSpan
+        if t1 == -1 and f_tol(p5, p3, atrNow) and f_tol(p3, p1, atrNow) and p2 > p1 and p4 > p1
+            f_set(5, math.max(p2, p4), 1, "Dreifachboden", hi5, lo5)
+        if t1 == 1 and f_tol(p5, p3, atrNow) and f_tol(p3, p1, atrNow) and p2 < p1 and p4 < p1
+            f_set(4, math.min(p2, p4), -1, "Dreifachtop", hi5, lo5)
+
+    if showTRI and alt4 and span4 <= maxSpan
+        if t1 == -1 and f_tol(p4, p2, atrNow) and p1 > p3
+            f_set(6, math.max(p4, p2), 1, "Aufsteigendes Dreieck", hi4, lo4)
+        if t1 == 1 and f_tol(p4, p2, atrNow) and p1 < p3
+            f_set(7, math.min(p4, p2), -1, "Absteigendes Dreieck", hi4, lo4)
+
+    if showREC and alt4 and span4 <= maxSpan and f_tol(p4, p2, atrNow) and f_tol(p3, p1, atrNow)
+        recTop = math.max(math.max(p1, p2), math.max(p3, p4))
+        recBot = math.min(math.min(p1, p2), math.min(p3, p4))
+        f_set(8, recTop, 1, "Rechteck", hi4, lo4)
+        f_set(9, recBot, -1, "Rechteck", hi4, lo4)
+        array.set(lastA, 0, "Rechteck (beidseitig)")
+
+    if showSYM and alt4 and span4 <= maxSpan
+        if t1 == 1 and p1 < p3 and p2 > p4
+            f_set(10, p1, 1, "Symmetrisches Dreieck", hi4, lo4)
+            f_set(11, p2, -1, "Symmetrisches Dreieck", hi4, lo4)
+            array.set(lastA, 0, "Symmetrisches Dreieck (beidseitig)")
+        if t1 == -1 and p2 < p4 and p1 > p3
+            f_set(10, p2, 1, "Symmetrisches Dreieck", hi4, lo4)
+            f_set(11, p1, -1, "Symmetrisches Dreieck", hi4, lo4)
+            array.set(lastA, 0, "Symmetrisches Dreieck (beidseitig)")
+
+    if showMEG and alt4 and span4 <= maxSpan
+        if t1 == 1 and p1 > p3 and p2 < p4
+            f_set(12, p1, 1, "Megaphon", hi4, lo4)
+            f_set(13, p2, -1, "Megaphon", hi4, lo4)
+            array.set(lastA, 0, "Megaphon (beidseitig)")
+        if t1 == -1 and p1 < p3 and p2 > p4
+            f_set(12, p2, 1, "Megaphon", hi4, lo4)
+            f_set(13, p1, -1, "Megaphon", hi4, lo4)
+            array.set(lastA, 0, "Megaphon (beidseitig)")
+
+    if showWED and alt4 and span4 <= maxSpan
+        if t1 == 1
+            if p1 < p3 and p2 < p4 and (p1 - p2) < (p3 - p4)
+                f_set(14, p1, 1, "Falling Wedge", hi4, lo4)
+            if p1 > p3 and p2 > p4 and (p1 - p2) < (p3 - p4)
+                f_set(15, p2, -1, "Rising Wedge", hi4, lo4)
+        if t1 == -1
+            if p1 < p3 and p2 < p4 and (p2 - p1) < (p4 - p3)
+                f_set(14, p2, 1, "Falling Wedge", hi4, lo4)
+            if p1 > p3 and p2 > p4 and (p2 - p1) < (p4 - p3)
+                f_set(15, p1, -1, "Rising Wedge", hi4, lo4)
+
+    if showV and alt3 and span3 <= vMaxSpan
+        if t1 == 1 and p3 > p2 * (1 + vMinMove) and p1 > p2 * (1 + vMinMove)
+            f_set(16, math.max(p1, p3), 1, "V-Bottom", hi3, lo3)
+        if t1 == -1 and p3 < p2 * (1 - vMinMove) and p1 < p2 * (1 - vMinMove)
+            f_set(17, math.min(p1, p3), -1, "V-Top", hi3, lo3)
+
+// ============ GOLDEN / DEATH CROSS ============
+ema50  = ta.ema(close, 50)
+ema200 = ta.ema(close, 200)
+crossUp = ta.crossover(ema50, ema200)
+crossDn = ta.crossunder(ema50, ema200)
+if showCRS and showLab and crossUp
+    label.new(bar_index, low, "Golden Cross", style=label.style_label_up, color=color.new(color.yellow, 0), textcolor=color.black, size=size.small)
+if showCRS and showLab and crossDn
+    label.new(bar_index, high, "Death Cross", style=label.style_label_down, color=color.new(color.yellow, 0), textcolor=color.black, size=size.small)
+
+// ============ MARKTSTRUKTUR: BOS / CHoCH ============
+bosUpNow  = not na(shP) and not shUsed and close > shP and close[1] <= shP
+bosDnNow  = not na(slP) and not slUsed and close < slP and close[1] >= slP
+chochUp   = bosUpNow and structDir == -1
+chochDn   = bosDnNow and structDir == 1
+anyStruct = bosUpNow or bosDnNow
+
+if bosUpNow
+    shUsed    := true
+    structDir := 1
+    lastEvt   := chochUp ? "CHoCH ↑" : "BOS ↑"
+    if showStruct
+        label.new(bar_index, low, lastEvt, style=label.style_label_up, color=color.new(color.aqua, 0), textcolor=color.black, size=size.tiny)
+if bosDnNow
+    slUsed    := true
+    structDir := -1
+    lastEvt   := chochDn ? "CHoCH ↓" : "BOS ↓"
+    if showStruct
+        label.new(bar_index, high, lastEvt, style=label.style_label_down, color=color.new(color.aqua, 0), textcolor=color.black, size=size.tiny)
+
+// ============ AUSBRUCH, SWEEP & MOHID VOLUME FILTER ============
+anyBreak    = false
+anyBreakVol = false
+anySweep    = false
+actCnt      = 0
+
+for k = 0 to 17
+    d = array.get(dirA, k)
+    if d != 0
+        actCnt := actCnt + 1
+        lv = array.get(lvlA, k)
+        if bar_index - array.get(barA, k) > maxSpan
+            array.set(dirA, k, 0)
+        else
+            // Sweep / Fakeout Erkennung
+            sweepNow = (d == 1 and high > lv and close <= lv) or (d == -1 and low < lv and close >= lv)
+            if showSweep and sweepNow and array.get(swA, k) == 0
+                array.set(swA, k, 1)
+                sweepCnt := sweepCnt + 1
+                anySweep := true
+                if showLab
+                    label.new(bar_index, d == 1 ? high : low, "⚠️ FAKEOUT / SWEEP: " + array.get(nameA, k), style=d == 1 ? label.style_label_down : label.style_label_up, color=color.new(color.orange, 0), textcolor=color.black, size=size.tiny)
+            
+            // Echter Ausbruch mit Volumen- und Trendbestätigung
+            if (d == 1 and close > lv and close[1] <= lv) or (d == -1 and close < lv and close[1] >= lv)
+                array.set(dirA, k, 0)
+                aligned = (d == 1 and trendUp) or (d == -1 and trendDown)
+                against = (d == 1 and trendDown) or (d == -1 and trendUp)
+                int trTag = aligned ? 1 : against ? -1 : 0
+                
+                // Mohid Filter: Nur wenn Trend passt (falls onlyTrend aktiv) und Volumen stimmt!
+                shown = not onlyTrend or trTag == 1
+                if shown
+                    anyBreak := true
+                    if volNow
+                        anyBreakVol := true
+
+                int slot = -1
+                for s = 0 to 49
+                    if slot == -1 and array.get(evAct, s) == 0
+                        slot := s
+                if slot >= 0
+                    array.set(evAct, slot, 1)
+                    array.set(evBar, slot, bar_index)
+                    array.set(evK, slot, k)
+                    array.set(evDir, slot, d)
+                    array.set(evVol, slot, volNow ? 1 : 0)
+                    array.set(evTr, slot, trTag)
+                    array.set(evPx, slot, close)
+                    array.set(evAt, slot, atrNow)
+                    array.set(evExt, slot, close)
+
+                if showLab and shown
+                    volText = volNow ? "✅ Vol-Breakout" : "⚠️ Ohne Volumen (vorsicht)"
+                    tagTxt = trTag == 1 ? "Trend-Bestätigt" : trTag == -1 ? "Gegen-Trend" : "Neutral"
+                    label.new(bar_index, d == 1 ? low : high, "🚀 " + array.get(nameA, k) + " (" + (d == 1 ? "LONG" : "SHORT") + ")\n" + volText + " | " + tagTxt, style=d == 1 ? label.style_label_up : label.style_label_down, color=d == 1 ? color.new(color.green, 0) : color.new(color.red, 0), textcolor=color.white, size=size.small)
+
+// ============ AUSWERTUNG / STATISTIK ============
+for s = 0 to 49
+    if array.get(evAct, s) == 1
+        ed = array.get(evDir, s)
+        ep = array.get(evPx, s)
+        ea = array.get(evAt, s)
+        if ed == 1
+            array.set(evExt, s, math.max(array.get(evExt, s), high))
+        else
+            array.set(evExt, s, math.min(array.get(evExt, s), low))
+        if bar_index - array.get(evBar, s) >= evalBars
+            ek      = array.get(evK, s)
+            extreme = array.get(evExt, s)
+            win     = ed == 1 ? (extreme - ep) >= evalAtrMult * ea : (ep - extreme) >= evalAtrMult * ea
+            array.set(stN, ek, array.get(stN, ek) + 1)
+            if win
+                array.set(stW, ek, array.get(stW, ek) + 1)
+            if array.get(evVol, s) == 1
+                array.set(stNV, ek, array.get(stNV, ek) + 1)
+                if win
+                    array.set(stWV, ek, array.get(stWV, ek) + 1)
+            trv = array.get(evTr, s)
+            if trv == 1
+                array.set(stNT, ek, array.get(stNT, ek) + 1)
+                if win
+                    array.set(stWT, ek, array.get(stWT, ek) + 1)
+            array.set(evAct, s, 0)
+
+// ============ TABELLE ============
+var table tb = na
+if barstate.islast
+    if not na(tb)
+        table.delete(tb)
+        tb := na
+    newestK   = -1
+    newestBar = -1
+    for k = 0 to 17
+        if array.get(dirA, k) != 0
+            hiK = array.get(hiA, k)
+            loK = array.get(loA, k)
+            lvK = array.get(lvlA, k)
+            nearOk = close <= hiK and close >= loK and math.abs(close - lvK) <= tblNear * (hiK - loK)
+            if nearOk and array.get(barA, k) > newestBar
+                newestBar := array.get(barA, k)
+                newestK   := k
+    if newestK >= 0
+        dirOpen = array.get(dirA, newestK)
+        tb := table.new(position.bottom_right, 2, 2, color.new(color.black, 20))
+        table.cell(tb, 0, 0, "Mohid Setup", text_color=color.white)
+        table.cell(tb, 1, 0, array.get(nameA, newestK) + " (" + (dirOpen == 1 ? "LONG" : "SHORT") + ")", text_color=color.white)
+        table.cell(tb, 0, 1, "Trefferquote", text_color=color.white)
+        table.cell(tb, 1, 1, f_pct(array.get(stW, newestK), array.get(stN, newestK)), text_color=color.white)
+
+// ============ OFFENE MUSTER ZEICHNEN ============
+if barstate.islast
+    if array.size(patLines) > 0
+        for i = 0 to array.size(patLines) - 1
+            line.delete(array.get(patLines, i))
+        array.clear(patLines)
+    if array.size(patLabels) > 0
+        for i = 0 to array.size(patLabels) - 1
+            label.delete(array.get(patLabels, i))
+        array.clear(patLabels)
+    if showOpen
+        for k = 0 to 17
+            d = array.get(dirA, k)
+            if d != 0
+                lvO    = array.get(lvlA, k)
+                colO   = d == 1 ? color.green : color.red
+                dirTxt = d == 1 ? "LONG" : "SHORT"
+                tagP   = d == 1 ? (trendUp ? "Trend bestätigt" : "Gegen-Trend") : (trendDown ? "Trend bestätigt" : "Gegen-Trend")
+                array.push(patLines, line.new(array.get(barA, k), lvO, bar_index, lvO, xloc=xloc.bar_index, extend=extend.right, color=colO, style=line.style_dashed, width=2))
+                array.push(patLabels, label.new(bar_index, lvO, "🎯 " + array.get(nameA, k) + " | " + dirTxt + " | LvL: " + str.tostring(lvO, format.mintick) + " | " + tagP, xloc=xloc.bar_index, style=label.style_label_right, color=color.new(colO, 20), textcolor=color.white, size=size.small))
+
+// ============ ALARME ============
+alertcondition(anyBreakVol, "Mohid: A+ Breakout mit Volumen", "A+ Breakout mit Volumen auf {{ticker}}")
+alertcondition(anySweep, "Mohid: Fakeout / Sweep Warnung", "Fakeout / Sweep Warnung auf {{ticker}}")
+alertcondition(anyStruct, "Mohid: Strukturwechsel (BOS/CHoCH)", "BOS/CHoCH auf {{ticker}}")

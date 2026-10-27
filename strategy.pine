@@ -1,0 +1,104 @@
+//@version=5
+strategy("Mohid 4H Trend & Breakout Strategy", overlay=true, initial_capital=10000, default_qty_type=strategy.percent_of_equity, default_qty_value=10)
+
+// ==========================================
+// INPUTS
+// ==========================================
+useHTFFilter   = input.bool(true, "1D HTF Filter aktivieren", group="Filter")
+adxThresh      = input.int(25, "ADX Mindestwert (Trendstärke)", group="Filter")
+chopThresh     = input.int(55, "Chop Index Max (Seitwärts-Sperre)", group="Filter")
+
+// ==========================================
+// INDICATORS (4H)
+// ==========================================
+ema9   = ta.ema(close, 9)
+ema21  = ta.ema(close, 21)
+ema50  = ta.ema(close, 50)
+ema200 = ta.ema(close, 200)
+
+// MACD
+[macdLine, signalLine, hist] = ta.macd(close, 12, 26, 9)
+
+// RSI
+rsiVal = ta.rsi(close, 14)
+
+// Supertrend (10, 3)
+[stLine, stDir] = ta.supertrend(3, 10) // stDir: -1 = Bullish/Up, 1 = Bearish/Down
+
+// Donchian Channels (20)
+dcUpper = ta.highest(high, 20)[1]
+dcLower = ta.lowest(low, 20)[1]
+
+// ATR (14)
+atrVal = ta.atr(14)
+
+// Volume Avg (20)
+volAvg = ta.sma(volume, 20)
+volBreak = volume > volAvg * 1.3
+
+// ==========================================
+// HTF FILTER (1D EMA 50)
+// ==========================================
+htfClose = request.security(syminfo.tickerid, "D", close)
+htfEma50 = request.security(syminfo.tickerid, "D", ta.ema(close, 50))
+htfUp    = htfClose > htfEma50
+htfDown  = htfClose < htfEma50
+
+// ==========================================
+// SIDEWAYS / CHOP FILTER
+// ==========================================
+// ADX Calculation
+[plusDI, minusDI, adxVal] = ta.dmi(14, 14)
+
+// Choppiness Index Calculation
+ciSum = math.sum(ta.atr(1), 14)
+ciRange = ta.highest(high, 14) - ta.lowest(low, 14)
+chopVal = 100 * math.log10(ciSum / ciRange) / math.log10(14)
+
+isChoppy = (adxVal < adxThresh) or (chopVal > chopThresh) or (rsiVal > 40 and rsiVal < 60)
+
+// ==========================================
+// SIGNALS
+// ==========================================
+// Trend Alignment
+emaStackUp   = (ema9 > ema21) and (ema21 > ema50) and (ema50 > ema200)
+emaStackDown = (ema9 < ema21) and (ema21 < ema50) and (ema50 < ema200)
+
+macdBull = (macdLine > signalLine) and (hist > 0)
+macdBear = (macdLine < signalLine) and (hist < 0)
+
+// Long Conditions
+condTrendLong = emaStackUp and macdBull and (stDir < 0) and (useHTFFilter ? htfUp : true)
+condBreakLong = (close > dcUpper) and volBreak and (useHTFFilter ? htfUp : true)
+condPullLong  = (rsiVal[1] < 30) and (rsiVal > rsiVal[1]) and (close > stLine) and (useHTFFilter ? htfUp : true)
+
+longSignal = not isChoppy and (condTrendLong or condBreakLong or condPullLong)
+
+// Short Conditions
+condTrendShort = emaStackDown and macdBear and (stDir > 0) and (useHTFFilter ? htfDown : true)
+condBreakShort = (close < dcLower) and volBreak and (useHTFFilter ? htfDown : true)
+condPullShort  = (rsiVal[1] > 70) and (rsiVal < rsiVal[1]) and (close < stLine) and (useHTFFilter ? htfDown : true)
+
+shortSignal = not isChoppy and (condTrendShort or condBreakShort or condPullShort)
+
+// ==========================================
+// STRATEGY EXECUTION (SL = 2*ATR, TP = 3*ATR)
+// ==========================================
+if (longSignal and strategy.position_size == 0)
+    strategy.entry("Long", strategy.long)
+    strategy.exit("Exit Long", "Long", stop=close - 2*atrVal, limit=close + 3.75*atrVal)
+
+if (shortSignal and strategy.position_size == 0)
+    strategy.entry("Short", strategy.short)
+    strategy.exit("Exit Short", "Short", stop=close + 2*atrVal, limit=close - 3.75*atrVal)
+
+// ==========================================
+// PLOTS
+// ==========================================
+plot(ema9, "EMA 9", color=color.blue)
+plot(ema21, "EMA 21", color=color.orange)
+plot(ema50, "EMA 50", color=color.red)
+plot(ema200, "EMA 200", color=color.white, linewidth=2)
+
+plotshape(longSignal, title="LONG Signal", style=shape.triangleup, location=location.belowbar, color=color.green, size=size.small, text="BUY")
+plotshape(shortSignal, title="SHORT Signal", style=shape.triangledown, location=location.abovebar, color=color.red, size=size.small, text="SELL")

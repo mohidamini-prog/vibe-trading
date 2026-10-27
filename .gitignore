@@ -1,0 +1,24 @@
+# Virtualenv / Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+
+# Scanner / Backtest Artefakte
+*.log
+backtest_results.csv
+scanner_state.json
+scanner_state_v9.json
+signals_latest.json
+signals_latest_v9.json
+signals_latest.txt
+signals_v9.json
+cron.log
+frame_*.png
+*.mp4
+
+# IDE
+.vscode/
+.idea/
+*.swp
+.DS_Store
