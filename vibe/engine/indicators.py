@@ -91,3 +91,77 @@ def chop_index(high, low, close, period=14):
     high_n = high.rolling(period).max()
     low_n = low.rolling(period).min()
     return 100 * np.log10(atr_v.rolling(period).sum() / (high_n - low_n)) / np.log10(period)
+
+
+# ============================================================
+# MOMENTUM-INDIKATOREN (Kombination mit Trend/RSI/Volumen)
+# ============================================================
+def roc(series, period=10):
+    """Rate of Change in %."""
+    return series.pct_change(period) * 100
+
+
+def momentum(series, period=10):
+    """Einfaches Momentum (Preis-Differenz)."""
+    return series - series.shift(period)
+
+
+def stoch_rsi(series, period=14, k_period=3, d_period=3):
+    """Stochastic RSI 0-100."""
+    rsi_v = rsi(series, period)
+    rsi_min = rsi_v.rolling(period).min()
+    rsi_max = rsi_v.rolling(period).max()
+    stoch = 100 * (rsi_v - rsi_min) / (rsi_max - rsi_min).replace(0, np.nan)
+    k = stoch.rolling(k_period).mean()
+    d = k.rolling(d_period).mean()
+    return k, d
+
+
+def mfi(high, low, close, volume, period=14):
+    """Money Flow Index 0-100."""
+    tp = (high + low + close) / 3
+    mf = tp * volume
+    pos = mf.where(tp.diff() > 0, 0.0).rolling(period).sum()
+    neg = mf.where(tp.diff() < 0, 0.0).rolling(period).sum()
+    ratio = pos / neg.replace(0, np.nan)
+    return 100 - (100 / (1 + ratio))
+
+
+def obv(close, volume):
+    """On-Balance Volume (kumulativ)."""
+    direction = np.sign(close.diff()).fillna(0)
+    return (direction * volume).cumsum()
+
+
+def williams_r(high, low, close, period=14):
+    """Williams %R (-100..0)."""
+    hh = high.rolling(period).max()
+    ll = low.rolling(period).min()
+    return -100 * (hh - close) / (hh - ll).replace(0, np.nan)
+
+
+def keltner(high, low, close, period=20, mult=2.0):
+    """Keltner-Kanal (EMA-Basis + ATR-Multiplikator)."""
+    mid = ema(close, period)
+    rng = atr(high, low, close, period)
+    return mid + mult * rng, mid, mid - mult * rng
+
+
+def volume_zscore(volume, period=20):
+    """Volumen-Z-Score: wie stark weicht aktuelles Volumen vom Mittel ab."""
+    mean_v = volume.rolling(period).mean()
+    std_v = volume.rolling(period).std().replace(0, np.nan)
+    return (volume - mean_v) / std_v
+
+
+def noise_level(high, low, close, period=14):
+    """
+    Kombinierter Noise-/Rauschwert 0-100.
+    Höher = mehr Rauschen (Sideways), niedriger = sauberer Trend.
+    Kombiniert Choppiness (Range) und ADX (Trendstärke).
+    """
+    chop = chop_index(high, low, close, period)
+    adx_v = adx(high, low, close, period)
+    # Choppiness hoch (50-100) = Rauschen. ADX niedrig (<20) = Rauschen.
+    noise = 0.6 * chop + 0.4 * (100 - adx_v.clip(0, 50) * 2)
+    return noise.clip(0, 100)

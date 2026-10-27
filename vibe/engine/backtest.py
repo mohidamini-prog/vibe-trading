@@ -73,6 +73,76 @@ def setup_breakout_pullback_combo(df):
     return bo | pb
 
 
+# ============================================================
+# MOMENTUM-SETUPS (Kombination mit Trend/RSI/Volumen + Noise-Filter)
+# ============================================================
+def setup_momentum_roc(df):
+    """ROC-Momentum + Trend + RSI + Volumen, nur bei niedrigem Noise."""
+    mom_ok = (df["roc10"] > 0) & (df["roc20"] > 0)
+    trend = df["ema50"] > df["ema200"]
+    rsi_ok = (df["rsi"] > 55) & (df["rsi"] < 70)
+    vol_ok = df["vol_ratio"] > 1.0
+    low_noise = df["noise"] < 55
+    return mom_ok & trend & rsi_ok & vol_ok & low_noise
+
+
+def setup_momentum_stoch_rsi(df):
+    """StochRSI-Kreuz + MACD + Volumen, Rauschen gefiltert."""
+    k_cross = (df["stoch_k"] > df["stoch_d"]) & (df["stoch_k"].shift(1) <= df["stoch_d"].shift(1))
+    macd_ok = df["macd_hist"] > 0
+    vol_ok = df["vol_ratio"] > 1.0
+    low_noise = df["noise"] < 50
+    return k_cross & macd_ok & vol_ok & low_noise
+
+
+def setup_momentum_obv(df):
+    """OBV-Steigung bestätigt Preisaufschwung + RSI + Trend."""
+    obv_up = df["obv_slope"] > 0
+    price_up = df["roc10"] > 0
+    trend = df["ema20"] > df["ema50"]
+    rsi_ok = df["rsi"] > 50
+    low_noise = df["noise"] < 55
+    return obv_up & price_up & trend & rsi_ok & low_noise
+
+
+def setup_momentum_mfi(df):
+    """MFI-Zustrom + Preis-Momentum + Volumen-Bestätigung."""
+    mfi_ok = (df["mfi"] > 55) & (df["mfi"] < 75)
+    mom_ok = df["roc10"] > 0
+    vol_ok = df["vol_ratio"] > 1.1
+    trend = df["ema50"] > df["ema200"]
+    low_noise = df["noise"] < 55
+    return mfi_ok & mom_ok & vol_ok & trend & low_noise
+
+
+def setup_momentum_williams(df):
+    """Williams %R aus Überverkauft + MACD-Kreuz + Volumen."""
+    wr_ok = (df["williams_r"] > -50) & (df["williams_r"].shift(1) < -50)
+    macd_ok = df["macd_hist"] > 0
+    vol_ok = df["vol_ratio"] > 1.0
+    low_noise = df["noise"] < 50
+    return wr_ok & macd_ok & vol_ok & low_noise
+
+
+def setup_momentum_breakout_filtered(df):
+    """Momentum-Breakout aus Keltner-Kanal + Volumen-Z-Score, Noise gefiltert."""
+    kc_break = df["Close"] > df["kc_upper"].shift(1)
+    vol_spike = df["vol_zscore"] > 0.5
+    rsi_ok = df["rsi"] > 55
+    low_noise = df["noise"] < 50
+    return kc_break & vol_spike & rsi_ok & low_noise
+
+
+def setup_momentum_meanrev_filtered(df):
+    """Mean-Reversion MIT Noise-Filter: nur wenn Markt nicht rauscht."""
+    oversold = df["rsi"] < 30
+    at_lower = df["Close"] <= df["bb_lower"]
+    bounce = df["Close"].shift(1) < df["bb_lower"].shift(1)
+    vol_ok = df["vol_ratio"] >= 0.9
+    low_noise = df["noise"] < 55
+    return oversold & (at_lower | bounce) & vol_ok & low_noise
+
+
 # Registry: Name -> Funktion
 SETUPS = {
     "trend_ema_rsi": setup_trend_ema_rsi,
@@ -82,6 +152,14 @@ SETUPS = {
     "supertrend_rsi": setup_supertrend_rsi,
     "adx_trend": setup_adx_trend,
     "breakout_pullback_combo": setup_breakout_pullback_combo,
+    # --- Momentum + Noise-Filter (neu) ---
+    "momentum_roc": setup_momentum_roc,
+    "momentum_stoch_rsi": setup_momentum_stoch_rsi,
+    "momentum_obv": setup_momentum_obv,
+    "momentum_mfi": setup_momentum_mfi,
+    "momentum_williams": setup_momentum_williams,
+    "momentum_breakout_filtered": setup_momentum_breakout_filtered,
+    "meanrev_filtered": setup_momentum_meanrev_filtered,
 }
 
 
@@ -108,6 +186,19 @@ def prepare(df):
     df["dc_upper"], df["dc_lower"] = ind.donchian(h, l, 20)
     df["vol_avg"] = v.rolling(20).mean()
     df["vol_ratio"] = v / df["vol_avg"].replace(0, np.nan)
+
+    # --- Momentum / Noise (neu) ---
+    df["roc10"] = ind.roc(c, 10)
+    df["roc20"] = ind.roc(c, 20)
+    df["mom10"] = ind.momentum(c, 10)
+    df["stoch_k"], df["stoch_d"] = ind.stoch_rsi(c)
+    df["mfi"] = ind.mfi(h, l, c, v, 14)
+    df["obv"] = ind.obv(c, v)
+    df["obv_slope"] = df["obv"].diff(10)
+    df["williams_r"] = ind.williams_r(h, l, c, 14)
+    df["kc_upper"], df["kc_mid"], df["kc_lower"] = ind.keltner(h, l, c, 20, 2.0)
+    df["vol_zscore"] = ind.volume_zscore(v, 20)
+    df["noise"] = ind.noise_level(h, l, c, 14)
     return df
 
 

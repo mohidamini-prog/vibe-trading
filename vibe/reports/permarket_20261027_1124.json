@@ -1,0 +1,314 @@
+{
+  "us": [
+    {
+      "setup": "meanrev_oversold",
+      "n": 1895,
+      "win_rate": 48.284960422163586,
+      "avg_pnl": 1.1209499590508394,
+      "total_pnl": 2124.2001724013408,
+      "profit_factor": 1.6158639633135352,
+      "max_drawdown": -54.15357188659107,
+      "net_return_pct": 214.26252961403807,
+      "assets": 99
+    },
+    {
+      "setup": "breakout_pullback_combo",
+      "n": 4377,
+      "win_rate": 45.647703906785466,
+      "avg_pnl": 0.4189897417933762,
+      "total_pnl": 1833.9180998296079,
+      "profit_factor": 1.1971141326643506,
+      "max_drawdown": -55.48151258466467,
+      "net_return_pct": 183.41465873517907,
+      "assets": 99
+    },
+    {
+      "setup": "momentum_obv",
+      "n": 3757,
+      "win_rate": 46.3933989885547,
+      "avg_pnl": 0.4795166017930433,
+      "total_pnl": 1801.5438729364637,
+      "profit_factor": 1.2173135285960217,
+      "max_drawdown": -56.11376211168746,
+      "net_return_pct": 180.73741156458712,
+      "assets": 99
+    },
+    {
+      "setup": "supertrend_rsi",
+      "n": 3277,
+      "win_rate": 45.92615196826365,
+      "avg_pnl": 0.5081549062414358,
+      "total_pnl": 1665.2236277531854,
+      "profit_factor": 1.2723216026392739,
+      "max_drawdown": -50.96084551623405,
+      "net_return_pct": 165.77151828084817,
+      "assets": 99
+    },
+    {
+      "setup": "meanrev_filtered",
+      "n": 1466,
+      "win_rate": 48.49931787175989,
+      "avg_pnl": 1.0767203839180313,
+      "total_pnl": 1578.4720828238337,
+      "profit_factor": 1.6441908978147384,
+      "max_drawdown": -50.334491933133584,
+      "net_return_pct": 158.87405760455684,
+      "assets": 99
+    },
+    {
+      "setup": "momentum_breakout_filtered",
+      "n": 1948,
+      "win_rate": 48.76796714579056,
+      "avg_pnl": 0.8085342985505837,
+      "total_pnl": 1575.024813576537,
+      "profit_factor": 1.4854746015176001,
+      "max_drawdown": -33.04772935904741,
+      "net_return_pct": 157.99603056432258,
+      "assets": 99
+    },
+    {
+      "setup": "adx_trend",
+      "n": 3204,
+      "win_rate": 46.285892634207244,
+      "avg_pnl": 0.48136541481352396,
+      "total_pnl": 1542.2947890625303,
+      "profit_factor": 1.1955205941882643,
+      "max_drawdown": -51.09823851657903,
+      "net_return_pct": 155.27270910347937,
+      "assets": 99
+    },
+    {
+      "setup": "momentum_mfi",
+      "n": 2092,
+      "win_rate": 47.37093690248566,
+      "avg_pnl": 0.6301896412436784,
+      "total_pnl": 1318.3567294817751,
+      "profit_factor": 1.366964762961016,
+      "max_drawdown": -42.29892915401743,
+      "net_return_pct": 132.40596203129232,
+      "assets": 99
+    },
+    {
+      "setup": "momentum_breakout",
+      "n": 1915,
+      "win_rate": 47.04960835509139,
+      "avg_pnl": 0.6441589440160824,
+      "total_pnl": 1233.5643777907983,
+      "profit_factor": 1.4499426249733203,
+      "max_drawdown": -42.970252555071,
+      "net_return_pct": 123.94866377945858,
+      "assets": 99
+    },
+    {
+      "setup": "trend_ema_rsi",
+      "n": 2953,
+      "win_rate": 45.242126650863526,
+      "avg_pnl": 0.40469608463438395,
+      "total_pnl": 1195.067537925336,
+      "profit_factor": 1.157939328818343,
+      "max_drawdown": -60.4393084746455,
+      "net_return_pct": 120.60569980757917,
+      "assets": 99
+    },
+    {
+      "setup": "momentum_roc",
+      "n": 1934,
+      "win_rate": 46.794208893485006,
+      "avg_pnl": 0.5548254201032936,
+      "total_pnl": 1073.0323624797697,
+      "profit_factor": 1.2585298738763935,
+      "max_drawdown": -42.762207863593005,
+      "net_return_pct": 107.73255768684197,
+      "assets": 99
+    },
+    {
+      "setup": "momentum_stoch_rsi",
+      "n": 1314,
+      "win_rate": 47.336377473363775,
+      "avg_pnl": 0.6762478399251338,
+      "total_pnl": 888.5896616616258,
+      "profit_factor": 1.7694228384698107,
+      "max_drawdown": -34.08550769536556,
+      "net_return_pct": 89.64030756154479,
+      "assets": 99
+    },
+    {
+      "setup": "pullback_trend",
+      "n": 2301,
+      "win_rate": 44.85006518904824,
+      "avg_pnl": 0.2975570967410026,
+      "total_pnl": 684.678879601047,
+      "profit_factor": 1.171421433432335,
+      "max_drawdown": -65.85759057337786,
+      "net_return_pct": 69.03396165311662,
+      "assets": 99
+    },
+    {
+      "setup": "momentum_williams",
+      "n": 695,
+      "win_rate": 48.34532374100719,
+      "avg_pnl": 0.8336456301415209,
+      "total_pnl": 579.3837129483569,
+      "profit_factor": 1.8196015228200109,
+      "max_drawdown": -37.308093741614954,
+      "net_return_pct": 57.889027714338056,
+      "assets": 99
+    }
+  ],
+  "dax": [
+    {
+      "setup": "breakout_pullback_combo",
+      "n": 1436,
+      "win_rate": 44.289693593314766,
+      "avg_pnl": 0.349708183582268,
+      "total_pnl": 502.18095162413687,
+      "profit_factor": 1.1581939897275388,
+      "max_drawdown": -66.4820859628493,
+      "net_return_pct": 50.177723658700394,
+      "assets": 34
+    },
+    {
+      "setup": "meanrev_oversold",
+      "n": 725,
+      "win_rate": 46.3448275862069,
+      "avg_pnl": 0.6669422848477249,
+      "total_pnl": 483.53315651460053,
+      "profit_factor": 1.395361057910961,
+      "max_drawdown": -66.66380380016787,
+      "net_return_pct": 47.891380386621414,
+      "assets": 34
+    },
+    {
+      "setup": "meanrev_filtered",
+      "n": 548,
+      "win_rate": 46.8978102189781,
+      "avg_pnl": 0.7556655567390655,
+      "total_pnl": 414.1047250930079,
+      "profit_factor": 1.5075402865606593,
+      "max_drawdown": -59.57612701377389,
+      "net_return_pct": 41.53950238807659,
+      "assets": 34
+    },
+    {
+      "setup": "momentum_obv",
+      "n": 1251,
+      "win_rate": 44.20463629096723,
+      "avg_pnl": 0.30856894328343526,
+      "total_pnl": 386.01974804757754,
+      "profit_factor": 1.1433925407146164,
+      "max_drawdown": -44.22313582234777,
+      "net_return_pct": 38.233466941104595,
+      "assets": 34
+    },
+    {
+      "setup": "adx_trend",
+      "n": 971,
+      "win_rate": 43.56333676622039,
+      "avg_pnl": 0.30338169895153383,
+      "total_pnl": 294.5836296819394,
+      "profit_factor": 1.1158973690280702,
+      "max_drawdown": -52.58327493904218,
+      "net_return_pct": 29.98572177180009,
+      "assets": 34
+    },
+    {
+      "setup": "supertrend_rsi",
+      "n": 1121,
+      "win_rate": 42.81891168599465,
+      "avg_pnl": 0.216974995452967,
+      "total_pnl": 243.22896990277596,
+      "profit_factor": 1.1119704811506512,
+      "max_drawdown": -58.06774359439999,
+      "net_return_pct": 22.804693432904667,
+      "assets": 34
+    },
+    {
+      "setup": "momentum_breakout",
+      "n": 702,
+      "win_rate": 44.15954415954416,
+      "avg_pnl": 0.31373429335127534,
+      "total_pnl": 220.24147393259528,
+      "profit_factor": 1.2198620372782332,
+      "max_drawdown": -50.16443096384271,
+      "net_return_pct": 21.98659545225141,
+      "assets": 34
+    },
+    {
+      "setup": "pullback_trend",
+      "n": 726,
+      "win_rate": 43.388429752066116,
+      "avg_pnl": 0.2764362952902025,
+      "total_pnl": 200.69275038068702,
+      "profit_factor": 1.1891006063728178,
+      "max_drawdown": -44.676081991829165,
+      "net_return_pct": 20.264438202873805,
+      "assets": 34
+    },
+    {
+      "setup": "momentum_williams",
+      "n": 253,
+      "win_rate": 45.8498023715415,
+      "avg_pnl": 0.6205550645646801,
+      "total_pnl": 157.000431334864,
+      "profit_factor": 1.6394749566821778,
+      "max_drawdown": -30.989270815962776,
+      "net_return_pct": 15.534660693232546,
+      "assets": 34
+    },
+    {
+      "setup": "momentum_roc",
+      "n": 582,
+      "win_rate": 43.12714776632303,
+      "avg_pnl": 0.18827406135799876,
+      "total_pnl": 109.5755037103553,
+      "profit_factor": 1.162089596433354,
+      "max_drawdown": -40.91138944287586,
+      "net_return_pct": 11.646694973814197,
+      "assets": 34
+    },
+    {
+      "setup": "momentum_breakout_filtered",
+      "n": 665,
+      "win_rate": 42.40601503759399,
+      "avg_pnl": 0.07331022602493004,
+      "total_pnl": 48.75130030657848,
+      "profit_factor": 1.0646363585057863,
+      "max_drawdown": -39.57407675875898,
+      "net_return_pct": 4.165127458425488,
+      "assets": 34
+    },
+    {
+      "setup": "trend_ema_rsi",
+      "n": 914,
+      "win_rate": 41.903719912472646,
+      "avg_pnl": 0.04103563068758463,
+      "total_pnl": 37.50656644845234,
+      "profit_factor": 1.0522627032637528,
+      "max_drawdown": -47.27282430660485,
+      "net_return_pct": 3.3222085949005877,
+      "assets": 34
+    },
+    {
+      "setup": "momentum_stoch_rsi",
+      "n": 458,
+      "win_rate": 41.92139737991266,
+      "avg_pnl": 0.04061779693895553,
+      "total_pnl": 18.602950998041646,
+      "profit_factor": 1.1870726776063212,
+      "max_drawdown": -35.52563149866462,
+      "net_return_pct": 1.6688877399854571,
+      "assets": 34
+    },
+    {
+      "setup": "momentum_mfi",
+      "n": 626,
+      "win_rate": 41.69329073482428,
+      "avg_pnl": -0.09464719040037906,
+      "total_pnl": -59.24914119063732,
+      "profit_factor": 1.0937203894429959,
+      "max_drawdown": -54.61559459429011,
+      "net_return_pct": -5.385727956306373,
+      "assets": 34
+    }
+  ]
+}
