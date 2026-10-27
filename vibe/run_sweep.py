@@ -17,15 +17,15 @@ from engine import data as data_loader
 from universe.universes import US_TOP100, DAX_40, ALL
 
 
-def run_sweep(years=5, markets="ALL", refresh=False):
+def run_sweep(years=5, markets="ALL", timeframe="1d", refresh=False):
     """Backtest-Sweep: jede Kombination x jedes Asset."""
     tickers = ALL if markets == "ALL" else (
         US_TOP100 if markets == "US" else DAX_40 if markets == "DAX" else ALL)
 
-    print(f"=== VIBE-TRADING SWEEP: {len(tickers)} Assets, {years} Jahre, Märkte={markets} ===")
+    print(f"=== VIBE-TRADING SWEEP: {len(tickers)} Assets, {years} Jahre, Märkte={markets}, Timeframe={timeframe} ===")
     print(f"Lade Daten (Cache{' (REFRESH)' if refresh else ''})...")
     t0 = time.time()
-    data = data_loader.load_universe(tickers, years=years, refresh=refresh)
+    data = data_loader.load_universe(tickers, years=years, timeframe=timeframe, refresh=refresh)
     print(f"  {len(data)} Assets geladen in {time.time()-t0:.1f}s")
 
     results = []
@@ -84,11 +84,14 @@ def run_sweep(years=5, markets="ALL", refresh=False):
 if __name__ == "__main__":
     yrs = 5
     mkt = "ALL"
+    tf = "1d"
     for a in sys.argv[1:]:
         if a.startswith("years="):
             yrs = int(a.split("=")[1])
         elif a in ("US", "DAX", "ALL"):
             mkt = a
+        elif a.startswith("timeframe="):
+            tf = a.split("=")[1]
         elif a == "refresh":
             pass
-    run_sweep(years=yrs, markets=mkt)
+    run_sweep(years=yrs, markets=mkt, timeframe=tf)
