@@ -1,0 +1,67 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1280' height='940' viewBox='0 0 1280 940' font-family='Segoe UI, sans-serif'>
+<defs><linearGradient id='bg' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#1a1440'/><stop offset='1' stop-color='#0a0e1a'/></linearGradient></defs>
+<rect width='1280' height='940' fill='url(#bg)'/>
+<text x='40' y='50' fill='#d7e0f2' font-size='26' font-weight='bold'>Orchestra — Trading Desk</text>
+<text x='40' y='76' fill='#6b7a99' font-size='14'>Echtzeit · 5 isolierte Subagenten · numpy-only</text>
+<rect x='40' y='100' width='1200' height='120' rx='14' fill='#121a2e' stroke='#1f2a45'/>
+<text x='70' y='140' fill='#6b7a99' font-size='13'>DIRIGENT</text>
+<text x='70' y='170' fill='#d7e0f2' font-size='22' font-weight='bold'>GOOGL</text>
+<text x='70' y='200' fill='#6b7a99' font-size='13'>S = -0.067 · Stärke 0.020 · Conf 29%</text>
+<text x='1180' y='170' text-anchor='end' fill='#94a3b8' font-size='48' font-weight='bold'>HOLD</text>
+<text x='1180' y='200' text-anchor='end' fill='#6b7a99' font-size='12'>2026-10-27T20:00:44</text>
+<rect x='40' y='250' width='1200' height='180' rx='14' fill='#121a2e' stroke='#1f2a45'/>
+<text x='60' y='270' fill='#6b7a99' font-size='12'>S-Verlauf (letzte 15 Zyklen)</text>
+<line x1='70' y1='340.0' x2='1210' y2='340.0' stroke='rgba(255,255,255,.15)'/>
+<polygon points='70,340.0 70.0,347.1 151.4,347.1 232.9,333.3 314.3,347.2 395.7,346.7 477.1,347.0 558.6,346.8 640.0,347.0 721.4,347.1 802.9,333.3 884.3,347.2 965.7,346.7 1047.1,347.0 1128.6,346.8 1210.0,347.0 1210,340.0' fill='rgba(124,92,255,.15)'/>
+<polyline points='70.0,347.1 151.4,347.1 232.9,333.3 314.3,347.2 395.7,346.7 477.1,347.0 558.6,346.8 640.0,347.0 721.4,347.1 802.9,333.3 884.3,347.2 965.7,346.7 1047.1,347.0 1128.6,346.8 1210.0,347.0' fill='none' stroke='#7c5cff' stroke-width='2.5'/>
+<rect x='20.0' y='430' width='232' height='330' rx='14' fill='#121a2e' stroke='#94a3b8' stroke-width='2'/>
+<rect x='94.0' y='475' width='84' height='62' rx='12' fill='#1c2640' stroke='#94a3b8' stroke-width='2'/>
+<circle cx='118.0' cy='503' r='7' fill='#94a3b8'/><circle cx='154.0' cy='503' r='7' fill='#94a3b8'/>
+<line x1='136.0' y1='475' x2='136.0' y2='461' stroke='#94a3b8' stroke-width='2'/>
+<circle cx='136.0' cy='457' r='5' fill='#94a3b8'/>
+<text x='136.0' y='570' text-anchor='middle' fill='#d7e0f2' font-size='16' font-weight='bold'>Momentum</text>
+<text x='136.0' y='590' text-anchor='middle' fill='#6b7a99' font-size='11'>Trend-Folger</text>
+<text x='136.0' y='635' text-anchor='middle' fill='#94a3b8' font-size='28' font-weight='bold'>HOLD</text>
+<text x='136.0' y='665' text-anchor='middle' fill='#6b7a99' font-size='12'>conf 30% · w 25%</text>
+<text x='136.0' y='690' text-anchor='middle' fill='#8b9bb8' font-size='10'>neutral: ADX 44 / Chop 46</text>
+<rect x='272.0' y='430' width='232' height='330' rx='14' fill='#121a2e' stroke='#94a3b8' stroke-width='2'/>
+<rect x='346.0' y='475' width='84' height='62' rx='12' fill='#1c2640' stroke='#94a3b8' stroke-width='2'/>
+<circle cx='370.0' cy='503' r='7' fill='#94a3b8'/><circle cx='406.0' cy='503' r='7' fill='#94a3b8'/>
+<line x1='388.0' y1='475' x2='388.0' y2='461' stroke='#94a3b8' stroke-width='2'/>
+<circle cx='388.0' cy='457' r='5' fill='#94a3b8'/>
+<text x='388.0' y='570' text-anchor='middle' fill='#d7e0f2' font-size='16' font-weight='bold'>MeanRev</text>
+<text x='388.0' y='590' text-anchor='middle' fill='#6b7a99' font-size='11'>Dip-Beifang</text>
+<text x='388.0' y='635' text-anchor='middle' fill='#94a3b8' font-size='28' font-weight='bold'>HOLD</text>
+<text x='388.0' y='665' text-anchor='middle' fill='#6b7a99' font-size='12'>conf 30% · w 20%</text>
+<text x='388.0' y='690' text-anchor='middle' fill='#8b9bb8' font-size='10'>z=1.80 normal</text>
+<rect x='524.0' y='430' width='232' height='330' rx='14' fill='#121a2e' stroke='#94a3b8' stroke-width='2'/>
+<rect x='598.0' y='475' width='84' height='62' rx='12' fill='#1c2640' stroke='#94a3b8' stroke-width='2'/>
+<circle cx='622.0' cy='503' r='7' fill='#94a3b8'/><circle cx='658.0' cy='503' r='7' fill='#94a3b8'/>
+<line x1='640.0' y1='475' x2='640.0' y2='461' stroke='#94a3b8' stroke-width='2'/>
+<circle cx='640.0' cy='457' r='5' fill='#94a3b8'/>
+<text x='640.0' y='570' text-anchor='middle' fill='#d7e0f2' font-size='16' font-weight='bold'>Vola/Risk</text>
+<text x='640.0' y='590' text-anchor='middle' fill='#6b7a99' font-size='11'>Bremser · VETO</text>
+<text x='640.0' y='635' text-anchor='middle' fill='#94a3b8' font-size='28' font-weight='bold'>HOLD</text>
+<text x='640.0' y='665' text-anchor='middle' fill='#6b7a99' font-size='12'>conf 30% · w 15%</text>
+<text x='640.0' y='690' text-anchor='middle' fill='#8b9bb8' font-size='10'>Regime normal, ATR 0.9x</text>
+<rect x='776.0' y='430' width='232' height='330' rx='14' fill='#121a2e' stroke='#ef4444' stroke-width='2'/>
+<rect x='850.0' y='475' width='84' height='62' rx='12' fill='#1c2640' stroke='#ef4444' stroke-width='2'/>
+<circle cx='874.0' cy='503' r='7' fill='#ef4444'/><circle cx='910.0' cy='503' r='7' fill='#ef4444'/>
+<line x1='892.0' y1='475' x2='892.0' y2='461' stroke='#ef4444' stroke-width='2'/>
+<circle cx='892.0' cy='457' r='5' fill='#ef4444'/>
+<text x='892.0' y='570' text-anchor='middle' fill='#d7e0f2' font-size='16' font-weight='bold'>Quant</text>
+<text x='892.0' y='590' text-anchor='middle' fill='#6b7a99' font-size='11'>Quant-Meinung</text>
+<text x='892.0' y='635' text-anchor='middle' fill='#ef4444' font-size='28' font-weight='bold'>SELL</text>
+<text x='892.0' y='665' text-anchor='middle' fill='#6b7a99' font-size='12'>conf 27% · w 25%</text>
+<text x='892.0' y='690' text-anchor='middle' fill='#8b9bb8' font-size='10'>QNN: a=-1, p_buy=0.63</text>
+<rect x='1028.0' y='430' width='232' height='330' rx='14' fill='#121a2e' stroke='#94a3b8' stroke-width='2'/>
+<rect x='1102.0' y='475' width='84' height='62' rx='12' fill='#1c2640' stroke='#94a3b8' stroke-width='2'/>
+<circle cx='1126.0' cy='503' r='7' fill='#94a3b8'/><circle cx='1162.0' cy='503' r='7' fill='#94a3b8'/>
+<line x1='1144.0' y1='475' x2='1144.0' y2='461' stroke='#94a3b8' stroke-width='2'/>
+<circle cx='1144.0' cy='457' r='5' fill='#94a3b8'/>
+<text x='1144.0' y='570' text-anchor='middle' fill='#d7e0f2' font-size='16' font-weight='bold'>News/EDGAR</text>
+<text x='1144.0' y='590' text-anchor='middle' fill='#6b7a99' font-size='11'>Event-Filter · VETO</text>
+<text x='1144.0' y='635' text-anchor='middle' fill='#94a3b8' font-size='28' font-weight='bold'>HOLD</text>
+<text x='1144.0' y='665' text-anchor='middle' fill='#6b7a99' font-size='12'>conf 30% · w 15%</text>
+<text x='1144.0' y='690' text-anchor='middle' fill='#8b9bb8' font-size='10'>kein Event-Risiko</text>
+</svg>

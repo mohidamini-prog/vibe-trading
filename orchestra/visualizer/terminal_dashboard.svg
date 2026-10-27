@@ -1,0 +1,192 @@
+<svg xmlns='http://www.w3.org/2000/svg' width='1280' height='900' viewBox='0 0 1280 900' font-family='Segoe UI, monospace'>
+<defs><linearGradient id='bg' x1='0' y1='0' x2='0' y2='1'><stop offset='0' stop-color='#0a0a0f'/><stop offset='1' stop-color='#050507'/></linearGradient><radialGradient id='glow' cx='.5' cy='.5' r='.5'><stop offset='0' stop-color='#7c5cff' stop-opacity='.35'/><stop offset='1' stop-color='#7c5cff' stop-opacity='0'/></radialGradient></defs>
+<rect width='1280' height='900' fill='url(#bg)'/>
+<rect x='0' y='0' width='1280' height='72' fill='#0f0f16'/>
+<line x1='0' y1='72' x2='1280' y2='72' stroke='#22223a'/>
+<text x='20' y='30' fill='#e2e8f0' font-size='20' font-weight='bold'>Orchestra Bot Terminal</text>
+<text x='20' y='52' fill='#64748b' font-size='11'>v1.8-night · every trade gets a reason</text>
+<circle cx='300' cy='27' r='6' fill='#22c55e'><animate attributeName='opacity' values='1;.3;1' dur='1.5s' repeatCount='indefinite'/></circle>
+<text x='315' y='32' fill='#22c55e' font-size='13' font-weight='bold'>RUNNING</text>
+<text x='1050' y='32' text-anchor='end' fill='#facc15' font-size='22' font-weight='bold'>$0.02</text>
+<text x='1050' y='52' text-anchor='end' fill='#64748b' font-size='11'>S = -0.067 · 15 Zyklen</text>
+<text x='1180' y='32' text-anchor='end' fill='#94a3b8' font-size='12'>HOLD</text>
+<text x='1180' y='52' text-anchor='end' fill='#64748b' font-size='10'>2026-10-27T20:00:44</text>
+<rect x='0' y='72' width='250' height='828' fill='#0b0b12'/>
+<line x1='250' y1='72' x2='250' y2='900' stroke='#22223a'/>
+<rect x='10' y='95' width='230' height='118' rx='8' fill='#12121c' stroke='#22223a'/>
+<rect x='10' y='95' width='4' height='118' rx='2' fill='#facc15'/>
+<path d='M 29.6 104.0 A 11 11 0 0 1 60.4 104.0' fill='none' stroke='#facc15' stroke-width='3.5'/>
+<rect x='25.400000000000002' y='105.4' width='5' height='10' rx='2' fill='#facc15'/>
+<rect x='57.6' y='105.4' width='5' height='10' rx='2' fill='#facc15'/>
+<circle cx='45' cy='122.2' r='11*s' fill='#f8fafc' stroke='#cbd5e1' stroke-width='1'/>
+<rect x='33.8' y='115.2' width='16*s' height='8*s' rx='4*s' fill='#0f172a'/>
+<circle cx='40.1' cy='120.8' r='1.8*s' fill='#facc15'><animate attributeName='r' values='1.2;2.4;1.2' dur='1.2s' repeatCount='indefinite'/></circle>
+<circle cx='49.9' cy='120.8' r='1.8*s' fill='#facc15'><animate attributeName='r' values='1.2;2.4;1.2' dur='1.2s' repeatCount='indefinite'/></circle>
+<text x='80' y='117' fill='#facc15' font-size='13' font-weight='bold'>SCANNER</text>
+<text x='80' y='137' fill='#facc15' font-size='12' font-weight='bold'>WARTET · conf 30%</text>
+<text x='80' y='157' fill='#64748b' font-size='9'>findet Trends &amp; Vola-Spitzen · flags o</text>
+<text x='80' y='175' fill='#94a3b8' font-size='10'>nächster: 0% eq</text>
+<rect x='212' y='105' width='3' height='14' rx='1' fill='#facc15'/><rect x='218' y='105' width='3' height='14' rx='1' fill='#facc15'/>
+<rect x='10' y='221' width='230' height='118' rx='8' fill='#12121c' stroke='#22223a'/>
+<rect x='10' y='221' width='4' height='118' rx='2' fill='#f87171'/>
+<path d='M 29.6 230.0 A 11 11 0 0 1 60.4 230.0' fill='none' stroke='#f87171' stroke-width='3.5'/>
+<rect x='25.400000000000002' y='231.4' width='5' height='10' rx='2' fill='#f87171'/>
+<rect x='57.6' y='231.4' width='5' height='10' rx='2' fill='#f87171'/>
+<circle cx='45' cy='248.2' r='11*s' fill='#f8fafc' stroke='#cbd5e1' stroke-width='1'/>
+<rect x='33.8' y='241.2' width='16*s' height='8*s' rx='4*s' fill='#0f172a'/>
+<circle cx='40.1' cy='246.8' r='1.8*s' fill='#facc15'><animate attributeName='r' values='1.2;2.4;1.2' dur='1.2s' repeatCount='indefinite'/></circle>
+<circle cx='49.9' cy='246.8' r='1.8*s' fill='#facc15'><animate attributeName='r' values='1.2;2.4;1.2' dur='1.2s' repeatCount='indefinite'/></circle>
+<text x='80' y='243' fill='#f87171' font-size='13' font-weight='bold'>RUG CHECK</text>
+<text x='80' y='263' fill='#facc15' font-size='12' font-weight='bold'>WARTET · conf 30%</text>
+<text x='80' y='283' fill='#64748b' font-size='9'>filtert Fake-Signale · nothing execute</text>
+<text x='80' y='301' fill='#94a3b8' font-size='10'>nächster: 0% eq</text>
+<rect x='212' y='231' width='3' height='14' rx='1' fill='#facc15'/><rect x='218' y='231' width='3' height='14' rx='1' fill='#facc15'/>
+<rect x='10' y='347' width='230' height='118' rx='8' fill='#12121c' stroke='#22223a'/>
+<rect x='10' y='347' width='4' height='118' rx='2' fill='#a78bfa'/>
+<path d='M 29.6 356.0 A 11 11 0 0 1 60.4 356.0' fill='none' stroke='#a78bfa' stroke-width='3.5'/>
+<rect x='25.400000000000002' y='357.4' width='5' height='10' rx='2' fill='#a78bfa'/>
+<rect x='57.6' y='357.4' width='5' height='10' rx='2' fill='#a78bfa'/>
+<circle cx='45' cy='374.2' r='11*s' fill='#f8fafc' stroke='#cbd5e1' stroke-width='1'/>
+<rect x='33.8' y='367.2' width='16*s' height='8*s' rx='4*s' fill='#0f172a'/>
+<circle cx='40.1' cy='372.8' r='1.8*s' fill='#facc15'><animate attributeName='r' values='1.2;2.4;1.2' dur='1.2s' repeatCount='indefinite'/></circle>
+<circle cx='49.9' cy='372.8' r='1.8*s' fill='#facc15'><animate attributeName='r' values='1.2;2.4;1.2' dur='1.2s' repeatCount='indefinite'/></circle>
+<text x='80' y='369' fill='#a78bfa' font-size='13' font-weight='bold'>SIZER</text>
+<text x='80' y='389' fill='#facc15' font-size='12' font-weight='bold'>WARTET · conf 30%</text>
+<text x='80' y='409' fill='#64748b' font-size='9'>risiko-basiertes Sizing · berechnet Po</text>
+<text x='80' y='427' fill='#94a3b8' font-size='10'>nächster: 0% eq</text>
+<rect x='212' y='357' width='3' height='14' rx='1' fill='#facc15'/><rect x='218' y='357' width='3' height='14' rx='1' fill='#facc15'/>
+<rect x='10' y='473' width='230' height='118' rx='8' fill='#12121c' stroke='#22223a'/>
+<rect x='10' y='473' width='4' height='118' rx='2' fill='#38bdf8'/>
+<path d='M 29.6 482.0 A 11 11 0 0 1 60.4 482.0' fill='none' stroke='#38bdf8' stroke-width='3.5'/>
+<rect x='25.400000000000002' y='483.4' width='5' height='10' rx='2' fill='#38bdf8'/>
+<rect x='57.6' y='483.4' width='5' height='10' rx='2' fill='#38bdf8'/>
+<circle cx='45' cy='500.2' r='11*s' fill='#f8fafc' stroke='#cbd5e1' stroke-width='1'/>
+<rect x='33.8' y='493.2' width='16*s' height='8*s' rx='4*s' fill='#0f172a'/>
+<path d='M 38.0 496.0 l 3 3 M 42.2 496.0 l -3 3' stroke='#ef4444' stroke-width='1.5' fill='none'/>
+<path d='M 47.8 496.0 l 3 3 M 52.0 496.0 l -3 3' stroke='#ef4444' stroke-width='1.5' fill='none'/>
+<text x='80' y='495' fill='#38bdf8' font-size='13' font-weight='bold'>EXECUTOR</text>
+<text x='80' y='515' fill='#ef4444' font-size='12' font-weight='bold'>NEIN · conf 27%</text>
+<text x='80' y='535' fill='#64748b' font-size='9'>öffnet &amp; schließt Trades · slipcap cap</text>
+<text x='80' y='553' fill='#94a3b8' font-size='10'>nächster: 0% eq</text>
+<path d='M 210 485 l 12 12 M 222 485 l -12 12' stroke='#ef4444' stroke-width='3' stroke-linecap='round'/>
+<rect x='10' y='599' width='230' height='118' rx='8' fill='#12121c' stroke='#22223a'/>
+<rect x='10' y='599' width='4' height='118' rx='2' fill='#fb923c'/>
+<path d='M 29.6 608.0 A 11 11 0 0 1 60.4 608.0' fill='none' stroke='#fb923c' stroke-width='3.5'/>
+<rect x='25.400000000000002' y='609.4' width='5' height='10' rx='2' fill='#fb923c'/>
+<rect x='57.6' y='609.4' width='5' height='10' rx='2' fill='#fb923c'/>
+<circle cx='45' cy='626.2' r='11*s' fill='#f8fafc' stroke='#cbd5e1' stroke-width='1'/>
+<rect x='33.8' y='619.2' width='16*s' height='8*s' rx='4*s' fill='#0f172a'/>
+<circle cx='40.1' cy='624.8' r='1.8*s' fill='#facc15'><animate attributeName='r' values='1.2;2.4;1.2' dur='1.2s' repeatCount='indefinite'/></circle>
+<circle cx='49.9' cy='624.8' r='1.8*s' fill='#facc15'><animate attributeName='r' values='1.2;2.4;1.2' dur='1.2s' repeatCount='indefinite'/></circle>
+<text x='80' y='621' fill='#fb923c' font-size='13' font-weight='bold'>LOGGER</text>
+<text x='80' y='641' fill='#facc15' font-size='12' font-weight='bold'>WARTET · conf 30%</text>
+<text x='80' y='661' fill='#64748b' font-size='9'>schreibt jede Entscheidung · no trade </text>
+<text x='80' y='679' fill='#94a3b8' font-size='10'>nächster: 0% eq</text>
+<rect x='212' y='609' width='3' height='14' rx='1' fill='#facc15'/><rect x='218' y='609' width='3' height='14' rx='1' fill='#facc15'/>
+<rect x='10' y='725' width='230' height='118' rx='8' fill='#12121c' stroke='#22223a'/>
+<rect x='10' y='725' width='4' height='118' rx='2' fill='#2dd4bf'/>
+<path d='M 29.6 734.0 A 11 11 0 0 1 60.4 734.0' fill='none' stroke='#2dd4bf' stroke-width='3.5'/>
+<rect x='25.400000000000002' y='735.4' width='5' height='10' rx='2' fill='#2dd4bf'/>
+<rect x='57.6' y='735.4' width='5' height='10' rx='2' fill='#2dd4bf'/>
+<circle cx='45' cy='752.2' r='11*s' fill='#f8fafc' stroke='#cbd5e1' stroke-width='1'/>
+<rect x='33.8' y='745.2' width='16*s' height='8*s' rx='4*s' fill='#0f172a'/>
+<circle cx='40.1' cy='750.8' r='1.8*s' fill='#facc15'><animate attributeName='r' values='1.2;2.4;1.2' dur='1.2s' repeatCount='indefinite'/></circle>
+<circle cx='49.9' cy='750.8' r='1.8*s' fill='#facc15'><animate attributeName='r' values='1.2;2.4;1.2' dur='1.2s' repeatCount='indefinite'/></circle>
+<text x='80' y='747' fill='#2dd4bf' font-size='13' font-weight='bold'>EQUITY</text>
+<text x='80' y='767' fill='#facc15' font-size='12' font-weight='bold'>WARTET · conf 29%</text>
+<text x='80' y='787' fill='#64748b' font-size='9'>verwaltet Balance &amp; Kurve · S-Wert &amp; S</text>
+<text x='80' y='805' fill='#94a3b8' font-size='10'>nächster: MASTER</text>
+<rect x='212' y='735' width='3' height='14' rx='1' fill='#facc15'/><rect x='218' y='735' width='3' height='14' rx='1' fill='#facc15'/>
+<rect x='270' y='80' width='990' height='36' fill='#0f0f16'/>
+<text x='284' y='102' fill='#e2e8f0' font-size='11' font-weight='bold'>LIVE FLOW</text>
+<line x1='278' y1='116' x2='340' y2='116' stroke='#7c5cff' stroke-width='2'/>
+<text x='366' y='102' fill='#64748b' font-size='11' font-weight='bold'>SCAN</text>
+<text x='448' y='102' fill='#64748b' font-size='11' font-weight='bold'>CHECK</text>
+<text x='530' y='102' fill='#64748b' font-size='11' font-weight='bold'>SIZE</text>
+<text x='612' y='102' fill='#64748b' font-size='11' font-weight='bold'>EXEC</text>
+<text x='694' y='102' fill='#64748b' font-size='11' font-weight='bold'>LOG</text>
+<circle cx='390' cy='175' r='80' fill='url(#glow)' opacity='.4'/>
+<circle cx='390' cy='157' r='26' fill='#fde68a' stroke='#d4a373' stroke-width='1.5'/>
+<path d='M 366 153 A 26 26 0 0 1 414 153 L 410 135 A 30 30 0 0 0 370 135 Z' fill='#3b2f2f'/>
+<path d='M 364 161 Q 356 181 360 195 Q 368 183 366 169 Z' fill='#3b2f2f'/>
+<path d='M 416 161 Q 424 181 420 195 Q 412 183 414 169 Z' fill='#3b2f2f'/>
+<circle cx='382' cy='155' r='2.5' fill='#7c5cff'/>
+<circle cx='398' cy='155' r='2.5' fill='#7c5cff'/>
+<path d='M 384 165 Q 390 171 396 165' fill='none' stroke='#b45309' stroke-width='1.8' stroke-linecap='round'/>
+<path d='M 368 181 Q 390 173 412 181 L 416 223 L 364 223 Z' fill='#7c5cff' opacity='.9'/>
+<path d='M 382 179 L 390 191 L 398 179 Z' fill='#f8fafc'/>
+<line x1='366' y1='189' x2='350' y2='205' stroke='#7c5cff' stroke-width='5' stroke-linecap='round'/>
+<line x1='414' y1='189' x2='430' y2='205' stroke='#7c5cff' stroke-width='5' stroke-linecap='round'/>
+<circle cx='350' cy='205' r='4' fill='#fde68a'/>
+<circle cx='430' cy='205' r='4' fill='#fde68a'/>
+<rect x='348' y='227' width='84' height='20' rx='10' fill='#1e293b' stroke='#7c5cff' stroke-width='1.5'/>
+<text x='390' y='241' text-anchor='middle' fill='#7c5cff' font-size='11' font-weight='bold'>MANAGERIN</text>
+<rect x='550.0' y='128' width='169.5' height='54' rx='6' fill='#12121c' stroke='#22223a'/>
+<text x='560.0' y='148' fill='#e2e8f0' font-size='12' font-weight='bold'>$AAPL</text>
+<text x='560.0' y='166' fill='#22c55e' font-size='10'>+2.0%</text>
+<rect x='727.5' y='128' width='169.5' height='54' rx='6' fill='#12121c' stroke='#22223a'/>
+<text x='737.5' y='148' fill='#e2e8f0' font-size='12' font-weight='bold'>$MSFT</text>
+<text x='737.5' y='166' fill='#22c55e' font-size='10'>+4.7%</text>
+<rect x='905.0' y='128' width='169.5' height='54' rx='6' fill='#12121c' stroke='#22223a'/>
+<text x='915.0' y='148' fill='#e2e8f0' font-size='12' font-weight='bold'>$NVDA</text>
+<text x='915.0' y='166' fill='#22c55e' font-size='10'>+6.4%</text>
+<rect x='1082.5' y='128' width='169.5' height='54' rx='6' fill='#12121c' stroke='#22223a'/>
+<text x='1092.5' y='148' fill='#e2e8f0' font-size='12' font-weight='bold'>$META</text>
+<text x='1092.5' y='166' fill='#22c55e' font-size='10'>+8.1%</text>
+<rect x='270' y='290' width='990' height='160' rx='8' fill='#0d0d15' stroke='#22223a'/>
+<text x='282' y='312' fill='#94a3b8' font-size='12' font-weight='bold'>PROFIT-KURVE · S-Verlauf</text>
+<text x='1248' y='312' text-anchor='end' fill='#facc15' font-size='16' font-weight='bold'>HOLD · -0.07</text>
+<line x1='280' y1='390' x2='1250' y2='390' stroke='#22223a'/>
+<polyline points='280.0,399.5 349.3,399.5 418.6,381.0 487.9,399.6 557.1,399.0 626.4,399.4 695.7,399.2 765.0,399.4 834.3,399.5 903.6,381.0 972.9,399.6 1042.1,399.0 1111.4,399.4 1180.7,399.2 1250.0,399.4' fill='none' stroke='#facc15' stroke-width='2.5'/>
+<polygon points='280,390 280.0,399.5 349.3,399.5 418.6,381.0 487.9,399.6 557.1,399.0 626.4,399.4 695.7,399.2 765.0,399.4 834.3,399.5 903.6,381.0 972.9,399.6 1042.1,399.0 1111.4,399.4 1180.7,399.2 1250.0,399.4 1250,390' fill='#facc15' opacity='.08'/>
+<text x='270' y='470' fill='#94a3b8' font-size='12' font-weight='bold'>FLOW</text>
+<rect x='280' y='482' width='200' height='54' rx='8' fill='#12121c' stroke='#38bdf8' stroke-width='1.5'/>
+<text x='292' y='506' fill='#38bdf8' font-size='14' font-weight='bold'>VOTE</text>
+<text x='292' y='524' fill='#64748b' font-size='9'>5 Agenten stimmen ab</text>
+<text x='495' y='512' fill='#7c5cff' font-size='20'>→</text>
+<rect x='515' y='482' width='200' height='54' rx='8' fill='#12121c' stroke='#facc15' stroke-width='1.5'/>
+<text x='527' y='506' fill='#facc15' font-size='14' font-weight='bold'>CHECK</text>
+<text x='527' y='524' fill='#64748b' font-size='9'>Risiko &amp; News prüfen</text>
+<text x='730' y='512' fill='#7c5cff' font-size='20'>→</text>
+<rect x='750' y='482' width='200' height='54' rx='8' fill='#12121c' stroke='#22c55e' stroke-width='1.5'/>
+<text x='762' y='506' fill='#22c55e' font-size='14' font-weight='bold'>DECIDE</text>
+<text x='762' y='524' fill='#64748b' font-size='9'>Dirigent: HOLD</text>
+<rect x='270' y='560' width='990' height='110' rx='8' fill='#0d0d15' stroke='#22223a'/>
+<text x='282' y='582' fill='#94a3b8' font-size='12' font-weight='bold'>TRADE · ENTRY vs EXIT</text>
+<text x='282' y='612' fill='#e2e8f0' font-size='22' font-weight='bold'>$GOOGL (FLAT)</text>
+<text x='282' y='634' fill='#64748b' font-size='11'>Status: hold · S=-0.067 · Stärke 0.020</text>
+<text x='282' y='654' fill='#94a3b8' font-size='10'>Begründung: Dirigent-Entscheidung aus 5 Agenten-Votes</text>
+<text x='1080' y='590' fill='#64748b' font-size='10'>AGENTEN-VOTES</text>
+<text x='1080' y='608' fill='#facc15' font-size='9'>SCANNER</text>
+<text x='1190' y='608' text-anchor='end' fill='#facc15' font-size='9'>WARTET 30%</text>
+<text x='1080' y='620' fill='#f87171' font-size='9'>RUG CHECK</text>
+<text x='1190' y='620' text-anchor='end' fill='#facc15' font-size='9'>WARTET 30%</text>
+<text x='1080' y='632' fill='#a78bfa' font-size='9'>SIZER</text>
+<text x='1190' y='632' text-anchor='end' fill='#facc15' font-size='9'>WARTET 30%</text>
+<text x='1080' y='644' fill='#38bdf8' font-size='9'>EXECUTOR</text>
+<text x='1190' y='644' text-anchor='end' fill='#ef4444' font-size='9'>NEIN 27%</text>
+<text x='1080' y='656' fill='#fb923c' font-size='9'>LOGGER</text>
+<text x='1190' y='656' text-anchor='end' fill='#facc15' font-size='9'>WARTET 30%</text>
+<rect x='270' y='690' width='990' height='190' rx='8' fill='#0d0d15' stroke='#22223a'/>
+<text x='282' y='712' fill='#94a3b8' font-size='12' font-weight='bold'>LOG · jede Entscheidung mit Grund</text>
+<text x='284' y='735' fill='#64748b' font-size='10'>20:00:44</text>
+<text x='360' y='735' fill='#facc15' font-size='11' font-weight='bold'>HOLD</text>
+<text x='440' y='735' fill='#e2e8f0' font-size='11' font-weight='bold'>$GOOGL</text>
+<text x='520' y='735' fill='#64748b' font-size='10'>S=-0.07 · Stärke 0.02</text>
+<text x='284' y='767' fill='#64748b' font-size='10'>20:00:44</text>
+<text x='360' y='767' fill='#facc15' font-size='11' font-weight='bold'>HOLD</text>
+<text x='440' y='767' fill='#e2e8f0' font-size='11' font-weight='bold'>$AMZN</text>
+<text x='520' y='767' fill='#64748b' font-size='10'>S=-0.07 · Stärke 0.02</text>
+<text x='284' y='799' fill='#64748b' font-size='10'>20:00:44</text>
+<text x='360' y='799' fill='#facc15' font-size='11' font-weight='bold'>HOLD</text>
+<text x='440' y='799' fill='#e2e8f0' font-size='11' font-weight='bold'>$TSLA</text>
+<text x='520' y='799' fill='#64748b' font-size='10'>S=-0.07 · Stärke 0.02</text>
+<text x='284' y='831' fill='#64748b' font-size='10'>20:00:44</text>
+<text x='360' y='831' fill='#facc15' font-size='11' font-weight='bold'>HOLD</text>
+<text x='440' y='831' fill='#e2e8f0' font-size='11' font-weight='bold'>$META</text>
+<text x='520' y='831' fill='#64748b' font-size='10'>S=-0.06 · Stärke 0.02</text>
+<text x='284' y='863' fill='#64748b' font-size='10'>20:00:44</text>
+<text x='360' y='863' fill='#facc15' font-size='11' font-weight='bold'>HOLD</text>
+<text x='440' y='863' fill='#e2e8f0' font-size='11' font-weight='bold'>$NVDA</text>
+<text x='520' y='863' fill='#64748b' font-size='10'>S=-0.07 · Stärke 0.02</text>
+</svg>
