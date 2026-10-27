@@ -26,8 +26,8 @@ from engine import data as data_loader
 from universe.universes import US_TOP100, DAX_40
 
 # Finale, validierte Setups (Walk-Forward OOS + Filter-Optimierung)
-# Haupt: meanrev_oversold mit Filter. Zweit: momentum_obv (Trendphasen).
-FINAL_SETUPS = ["meanrev_oversold", "momentum_obv"]
+# Haupt: meanrev_oversold_loose (mehr Rendite, A/B-Test bestätigt). Zweit: momentum_obv.
+FINAL_SETUPS = ["meanrev_oversold_loose", "momentum_obv"]
 
 STATE_FILE = os.path.join(BASE, "..", "scanner_state.json")
 OUTPUT_JSON = os.path.join(BASE, "..", "signals_latest.json")
@@ -78,7 +78,7 @@ def scan_symbol(ticker, market, setups, days_back=2, state=None):
             # Validierte Filter anwenden (aus Filter-Optimierung):
             #   meanrev_oversold: Noise<50, Vol>=1.2, ATR%<5
             #   momentum_obv: Noise<55, Vol>=1.0
-            if name == "meanrev_oversold":
+            if name == "meanrev_oversold_loose":
                 sig_mask = sig_mask & (prep["noise"] < 50) & (prep["vol_ratio"] >= 1.2) & ((prep["atr"] / prep["Close"] * 100) < 5.0)
             elif name == "momentum_obv":
                 sig_mask = sig_mask & (prep["noise"] < 55) & (prep["vol_ratio"] >= 1.0)

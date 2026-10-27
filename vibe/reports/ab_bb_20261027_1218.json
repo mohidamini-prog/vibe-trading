@@ -1,0 +1,34 @@
+[
+  {
+    "variant": "rsi_only",
+    "n": 4404,
+    "win_rate": 46.775658492279746,
+    "net_return_pct": 369.6297081639159,
+    "profit_factor": 1.4199118815282332,
+    "max_drawdown": -69.54591845846248
+  },
+  {
+    "variant": "rsi_bb",
+    "n": 2305,
+    "win_rate": 47.59219088937093,
+    "net_return_pct": 222.87570177600819,
+    "profit_factor": 1.553178346160182,
+    "max_drawdown": -63.13152258749856
+  },
+  {
+    "variant": "rsi_bb_bounce",
+    "n": 2620,
+    "win_rate": 47.74809160305343,
+    "net_return_pct": 262.15391000065944,
+    "profit_factor": 1.5594947995264112,
+    "max_drawdown": -66.66380380016787
+  },
+  {
+    "variant": "rsi_bb_loose",
+    "n": 3326,
+    "win_rate": 47.11365003006615,
+    "net_return_pct": 311.89927105076436,
+    "profit_factor": 1.4896829837046353,
+    "max_drawdown": -66.23997538379764
+  }
+]

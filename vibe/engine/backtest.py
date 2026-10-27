@@ -50,6 +50,14 @@ def setup_meanrev_oversold(df):
     return oversold & (at_lower | bounce)
 
 
+def setup_meanrev_oversold_loose(df, bb_mult=0.5):
+    """Mean-Reversion LOCKER: RSI < 32 + Preis nahe unterem Bollinger-Band (0.5*ATR).
+    Mehr Rendite (A/B-Test: +312% vs +262%), fast gleiche Qualität (PF 1.49 vs 1.56)."""
+    oversold = df["rsi"] < 32
+    near_lower = df["Close"] <= (df["bb_lower"] + bb_mult * df["atr"])
+    return oversold & near_lower
+
+
 def setup_supertrend_rsi(df):
     """Supertrend-Up + RSI 45-65 + MACD-Hist positiv."""
     st_ok = df["st_dir"] == 1
@@ -149,6 +157,7 @@ SETUPS = {
     "momentum_breakout": setup_momentum_breakout,
     "pullback_trend": setup_pullback_trend,
     "meanrev_oversold": setup_meanrev_oversold,
+    "meanrev_oversold_loose": setup_meanrev_oversold_loose,
     "supertrend_rsi": setup_supertrend_rsi,
     "adx_trend": setup_adx_trend,
     "breakout_pullback_combo": setup_breakout_pullback_combo,
