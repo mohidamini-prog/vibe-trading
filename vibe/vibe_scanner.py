@@ -25,16 +25,9 @@ from engine import backtest as bt
 from engine import data as data_loader
 from universe.universes import US_TOP100, DAX_40
 
-# Beste Setups aus der Per-Markt-Optimierung
-TOP_SETUPS = [
-    "meanrev_oversold",
-    "meanrev_filtered",
-    "momentum_obv",
-    "momentum_breakout_filtered",
-    "breakout_pullback_combo",
-    "supertrend_rsi",
-    "momentum_williams",
-]
+# Finale, validierte Setups (Walk-Forward OOS + Filter-Optimierung)
+# Haupt: meanrev_oversold mit Filter. Zweit: momentum_obv (Trendphasen).
+FINAL_SETUPS = ["meanrev_oversold", "momentum_obv"]
 
 STATE_FILE = os.path.join(BASE, "..", "scanner_state.json")
 OUTPUT_JSON = os.path.join(BASE, "..", "signals_latest.json")
@@ -82,6 +75,13 @@ def scan_symbol(ticker, market, setups, days_back=2, state=None):
         for name in setups:
             fn = bt.SETUPS[name]
             sig_mask = fn(prep).fillna(False)
+            # Validierte Filter anwenden (aus Filter-Optimierung):
+            #   meanrev_oversold: Noise<50, Vol>=1.2, ATR%<5
+            #   momentum_obv: Noise<55, Vol>=1.0
+            if name == "meanrev_oversold":
+                sig_mask = sig_mask & (prep["noise"] < 50) & (prep["vol_ratio"] >= 1.2) & ((prep["atr"] / prep["Close"] * 100) < 5.0)
+            elif name == "momentum_obv":
+                sig_mask = sig_mask & (prep["noise"] < 55) & (prep["vol_ratio"] >= 1.0)
             # Nur echte Signale in den letzten days_back Tagen
             recent = sig_mask[sig_mask & (sig_mask.index >= cutoff)]
             for ts in recent.index:
@@ -127,7 +127,7 @@ def main():
             except Exception:
                 pass
 
-    setups = list(bt.SETUPS.keys()) if use_all else TOP_SETUPS
+    setups = list(bt.SETUPS.keys()) if use_all else FINAL_SETUPS
     print(f"=== VIBE SCANNER: {len(setups)} Setups, letzte {days_back} Tage ===")
     print(f"Setups: {', '.join(setups)}\n")
 
