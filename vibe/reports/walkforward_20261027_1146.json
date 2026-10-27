@@ -1,0 +1,128 @@
+{
+  "agg": {
+    "meanrev_oversold": {
+      "n": 1589,
+      "win_rate": 51.03838892385148,
+      "net_return_pct": 233.1736176829932,
+      "pf": 4.626781513362209
+    },
+    "meanrev_filtered": {
+      "n": 1239,
+      "win_rate": 52.21953188054883,
+      "net_return_pct": 196.01117253156826,
+      "pf": 4.139958941869278
+    },
+    "momentum_obv": {
+      "n": 3412,
+      "win_rate": 49.50175849941383,
+      "net_return_pct": 267.87978606860673,
+      "pf": 1.5014999375905558
+    },
+    "momentum_breakout_filtered": {
+      "n": 1793,
+      "win_rate": 50.97601784718349,
+      "net_return_pct": 166.92062947569016,
+      "pf": 2.0767303200757463
+    },
+    "momentum_williams": {
+      "n": 622,
+      "win_rate": 50.48231511254019,
+      "net_return_pct": 76.29817663821376,
+      "pf": 1.9298738360152867
+    },
+    "breakout_pullback_combo": {
+      "n": 3951,
+      "win_rate": 46.64641862819539,
+      "net_return_pct": 201.2704567989493,
+      "pf": 1.402779628544133
+    }
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "test_start": "2023-06-27 00:00:00",
+      "test_end": "2025-02-25 00:00:00",
+      "results": {
+        "meanrev_oversold": {
+          "n": 751,
+          "win_rate": 51.13182423435419,
+          "net_return_pct": 96.88959691905943,
+          "pf": 6.742575667581779
+        },
+        "meanrev_filtered": {
+          "n": 582,
+          "win_rate": 51.89003436426117,
+          "net_return_pct": 76.65831107258703,
+          "pf": 5.676629917470783
+        },
+        "momentum_obv": {
+          "n": 1835,
+          "win_rate": 52.09809264305177,
+          "net_return_pct": 171.15061706583825,
+          "pf": 1.6907543951496904
+        },
+        "momentum_breakout_filtered": {
+          "n": 1000,
+          "win_rate": 53.2,
+          "net_return_pct": 106.85696574397211,
+          "pf": 2.1920210011200694
+        },
+        "momentum_williams": {
+          "n": 328,
+          "win_rate": 49.69512195121951,
+          "net_return_pct": 31.32257043052057,
+          "pf": 1.401702856564805
+        },
+        "breakout_pullback_combo": {
+          "n": 2075,
+          "win_rate": 48.674698795180724,
+          "net_return_pct": 141.76808447071488,
+          "pf": 1.5534484600319194
+        }
+      }
+    },
+    {
+      "fold": 2,
+      "test_start": "2025-02-25 00:00:00",
+      "test_end": "2026-10-26 00:00:00",
+      "results": {
+        "meanrev_oversold": {
+          "n": 838,
+          "win_rate": 50.95465393794749,
+          "net_return_pct": 136.28402076393377,
+          "pf": 2.51098735914264
+        },
+        "meanrev_filtered": {
+          "n": 657,
+          "win_rate": 52.51141552511415,
+          "net_return_pct": 119.35286145898124,
+          "pf": 2.6032879662677724
+        },
+        "momentum_obv": {
+          "n": 1577,
+          "win_rate": 46.480659480025366,
+          "net_return_pct": 96.7291690027685,
+          "pf": 1.3122454800314214
+        },
+        "momentum_breakout_filtered": {
+          "n": 793,
+          "win_rate": 48.17150063051702,
+          "net_return_pct": 60.063663731718044,
+          "pf": 1.9614396390314233
+        },
+        "momentum_williams": {
+          "n": 294,
+          "win_rate": 51.36054421768708,
+          "net_return_pct": 44.97560620769318,
+          "pf": 2.4580448154657684
+        },
+        "breakout_pullback_combo": {
+          "n": 1876,
+          "win_rate": 44.40298507462686,
+          "net_return_pct": 59.50237232823442,
+          "pf": 1.2521107970563465
+        }
+      }
+    }
+  ]
+}

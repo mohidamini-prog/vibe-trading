@@ -1,0 +1,47 @@
+[
+  {
+    "setup": "orderflow",
+    "n": 4111,
+    "win_rate": 45.90124057406957,
+    "net_return_pct": 194.05952447746088,
+    "profit_factor": 1.2193634368881987,
+    "max_drawdown": -46.709210202660046,
+    "assets": 133
+  },
+  {
+    "setup": "rsi_200_momentum",
+    "n": 2824,
+    "win_rate": 47.45042492917847,
+    "net_return_pct": 184.40378531706617,
+    "profit_factor": 1.3232310260064815,
+    "max_drawdown": -43.5736832303199,
+    "assets": 133
+  },
+  {
+    "setup": "momentum_accel",
+    "n": 4044,
+    "win_rate": 45.32640949554896,
+    "net_return_pct": 166.8828414958191,
+    "profit_factor": 1.1790881257061274,
+    "max_drawdown": -53.57658996915233,
+    "assets": 133
+  },
+  {
+    "setup": "rsi_ema_trend",
+    "n": 3408,
+    "win_rate": 45.39319248826291,
+    "net_return_pct": 142.13898876262567,
+    "profit_factor": 1.2116961821772347,
+    "max_drawdown": -62.95581104921801,
+    "assets": 133
+  },
+  {
+    "setup": "orderflow_strict",
+    "n": 1602,
+    "win_rate": 48.4394506866417,
+    "net_return_pct": 131.31276120906313,
+    "profit_factor": 1.5818633425895494,
+    "max_drawdown": -41.201617868200714,
+    "assets": 133
+  }
+]
