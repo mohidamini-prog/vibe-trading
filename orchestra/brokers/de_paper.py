@@ -125,7 +125,10 @@ def execute_decision(decision, symbol, timeframe="1d"):
     state = _get_state()
     positions = {k: v for k, v in state.items() if not k.startswith("_")}
 
-    if dec_str == "BUY" and strength >= 0.2:
+    # Layer-System (1d/4h) hat kleinere strength-Werte (~0.05-0.18) als das alte
+    # 5-Agenten-System (0.2-0.4). Schwelle daher auf 0.05 gesetzt (28.10.).
+    MIN_STRENGTH = 0.05
+    if dec_str == "BUY" and strength >= MIN_STRENGTH:
         if symbol in positions:
             return None
         if len(positions) >= MAX_POSITIONS:
@@ -140,7 +143,7 @@ def execute_decision(decision, symbol, timeframe="1d"):
         # Insider-Hold prüfen (EDGAR nur US — DE hat kein EDGAR, daher normal halten)
         return open_position(symbol, qty, price, extra=f"timeframe={timeframe} Stärke={strength:.2f}")
 
-    elif dec_str == "SELL" and strength >= 0.2:
+    elif dec_str == "SELL" and strength >= MIN_STRENGTH:
         if symbol in positions:
             return sell_position(symbol, positions[symbol]["qty"], price,
                                  extra=f"timeframe={timeframe} Stärke={strength:.2f}")

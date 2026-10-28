@@ -245,8 +245,11 @@ def execute_decision(decision, symbol, qty=DEFAULT_QTY, timeframe="1d"):
         log_error(f"risk pre-check {symbol}", e)
 
     # Nur bei ausreichender Stärke handeln (Qualität > Quantität)
+    # Layer-System (1d/4h) hat kleinere strength-Werte (~0.05-0.18) als das alte
+    # 5-Agenten-System (0.2-0.4). Schwelle daher auf 0.05 gesetzt (28.10.).
+    MIN_STRENGTH = 0.05
     if dec_str == "BUY":
-        if strength < 0.2:
+        if strength < MIN_STRENGTH:
             orchestra_log().info(f"{symbol}: BUY-Signal zu schwach (Stärke {strength:.2f}) -> keine Order")
             return None
         # Position-Limit prüfen (max 5)
@@ -324,7 +327,7 @@ def execute_decision(decision, symbol, qty=DEFAULT_QTY, timeframe="1d"):
             return None
 
     elif dec_str == "SELL":
-        if strength < 0.2:
+        if strength < MIN_STRENGTH:
             orchestra_log().info(f"{symbol}: SELL-Signal zu schwach (Stärke {strength:.2f}) -> keine Order")
             return None
         # INSIDER-HOLD-Schutz: Wenn Position als Insider-Hold markiert ist,

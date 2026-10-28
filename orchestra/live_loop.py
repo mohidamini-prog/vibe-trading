@@ -19,10 +19,34 @@ if str(REPO_ROOT) not in sys.path:
 
 from orchestra.logging_setup import orchestra_log, trades_log, log_trade, log_error
 
-# US-Symbole (Alpaca-handelbar)
+# US-Symbole (Alpaca-handelbar) — Kern-Universe
 US_SYMBOLS = ["AAPL", "MSFT", "NVDA", "META", "GOOGL", "AMZN", "TSLA"]
 # DE-Symbole (yfinance, nur Signale)
 DE_SYMBOLS = ["SAP.DE", "SIE.DE", "BMW.DE", "MBG.DE"]
+
+
+def load_universe():
+    """Lädt das Scan-Universum: DAX + MDAX (Xetra) + NASDAQ100 (28.10., User-Wunsch).
+    Returns: (us_symbols, de_symbols) dedupliziert.
+    """
+    import json
+    from pathlib import Path
+    cfg = Path(__file__).resolve().parent.parent / "index_constituents.json"
+    us, de = [], []
+    if cfg.exists():
+        try:
+            d = json.loads(cfg.read_text())
+            # US-Ticker (nur NASDAQ100)
+            us += d.get("NASDAQ100", [])
+            # DE-Ticker (DAX + MDAX, nur .DE = Xetra)
+            for key in ("DAX", "MDAX"):
+                de += [t for t in d.get(key, []) if t.endswith(".DE")]
+        except Exception:
+            pass
+    # Dedupe + Reihenfolge stabil
+    us = list(dict.fromkeys(us))
+    de = list(dict.fromkeys(de))
+    return us or US_SYMBOLS, de or DE_SYMBOLS
 
 
 def run_cycle(verbose=False):
@@ -30,15 +54,31 @@ def run_cycle(verbose=False):
     from orchestra.orchestrator import run_scan
     from orchestra.broker_integration import execute_decision
     from orchestra.insider_handler import run_insider_cycle
+    from orchestra.layers.data import load_batch
+
+    # Scan-Universum laden (DAX + MDAX/Xetra + NASDAQ100)
+    us_all, de_all = load_universe()
+
+    # Daten effizient per Batch-Download vorladen (Cache füllen)
+    orchestra_log().info(f"Batch-Download {len(us_all)+len(de_all)} Symbole (1d)...")
+    try:
+        load_batch(us_all + de_all, timeframe="1d")
+    except Exception as e:
+        log_error("batch download 1d", e)
+    orchestra_log().info(f"Batch-Download 4h...")
+    try:
+        load_batch(us_all + de_all, timeframe="4h")
+    except Exception as e:
+        log_error("batch download 4h", e)
 
     t0 = time.time()
-    orchestra_log().info("=== LIVE-ZYKLUS START ===")
+    orchestra_log().info(f"=== LIVE-ZYKLUS START (US {len(us_all)}, DE {len(de_all)}) ===")
     trades = []
 
     # 1. Insider separat behandeln (einmal kaufen, dann abwarten)
     orchestra_log().info("Schritt 1/3: Insider-Signale (separat, einmal kaufen + abwarten)")
     try:
-        ins_res = run_insider_cycle(US_SYMBOLS)
+        ins_res = run_insider_cycle(us_all[:20])  # nur Top-20 US für API-Last
         for b in ins_res["new_buys"]:
             trades.append({"type": "insider_buy", **b})
         for e in ins_res["exits"]:
@@ -69,10 +109,10 @@ def run_cycle(verbose=False):
     except Exception as e:
         log_error("de manage", e)
 
-    # 4. Normale Signale auf 4h + 1d
-    orchestra_log().info("Schritt 4/4: Normale Signale (4h + 1d)")
+    # 4. Normale Signale auf 4h + 1d (über das erweiterte Universum)
+    orchestra_log().info(f"Schritt 4/4: Normale Signale (4h + 1d, {len(us_all)+len(de_all)} Symbole)")
     try:
-        results = run_scan(symbols=US_SYMBOLS + DE_SYMBOLS, verbose=False)
+        results = run_scan(symbols=us_all + de_all, verbose=False)
         for key, d in results.items():
             if "error" in d:
                 continue
