@@ -1,0 +1,50 @@
+[
+  {
+    "timeframe": "1d",
+    "variante": "V2",
+    "mode": "oder_no_veto",
+    "label": "ODER ohne Veto",
+    "n_trades": 195,
+    "hit_rate": 0.4769,
+    "avg_ret": 0.0043,
+    "total_ret": 0.8325,
+    "wins": 93,
+    "losses": 86
+  },
+  {
+    "timeframe": "1d",
+    "variante": "V3",
+    "mode": "oder_veto",
+    "label": "ODER mit Veto",
+    "n_trades": 195,
+    "hit_rate": 0.4769,
+    "avg_ret": 0.0043,
+    "total_ret": 0.8325,
+    "wins": 93,
+    "losses": 86
+  },
+  {
+    "timeframe": "4h",
+    "variante": "V2",
+    "mode": "oder_no_veto",
+    "label": "ODER ohne Veto",
+    "n_trades": 230,
+    "hit_rate": 0.4044,
+    "avg_ret": -0.0008,
+    "total_ret": -0.1847,
+    "wins": 93,
+    "losses": 126
+  },
+  {
+    "timeframe": "4h",
+    "variante": "V3",
+    "mode": "oder_veto",
+    "label": "ODER mit Veto",
+    "n_trades": 230,
+    "hit_rate": 0.4044,
+    "avg_ret": -0.0008,
+    "total_ret": -0.1847,
+    "wins": 93,
+    "losses": 126
+  }
+]

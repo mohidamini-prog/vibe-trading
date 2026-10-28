@@ -35,6 +35,7 @@ tiers:
 conductor:
   buy_threshold: 0.5     # S > +0.5 => BUY
   sell_threshold: -0.5   # S < -0.5 => SELL
+  oder_conf: 0.80        # ODER-Logik: EIN Signal mit conf>=0.80 reicht für BUY/SELL
   weights:               # START-Gewichte (werden nachts dynamisch optimiert)
     momentum: 0.25
     meanrev: 0.20

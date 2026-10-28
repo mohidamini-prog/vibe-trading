@@ -87,9 +87,16 @@ class Conductor:
             S *= 0.3
             avg_conf *= 0.5
 
-        if S > self.buy_threshold:
+        # ODER-Logik (User-Freigabe, 28.10.): Ein einzelnes starkes Signal
+        # (conf >= 0.80) reicht für BUY — zusätzlich zur UND-Schwelle S > 0.5.
+        # Basierend auf Backtest: ODER erzeugt ~195 Trades (+83% 5y) statt 0 bei UND.
+        ODER_CONF = float(get("conductor.oder_conf", 0.80))
+        single_buy = any(s.get("a") == 1 and s.get("conf", 0) >= ODER_CONF for s in signals)
+        single_sell = any(s.get("a") == -1 and s.get("conf", 0) >= ODER_CONF for s in signals)
+
+        if S > self.buy_threshold or single_buy:
             decision = "BUY"
-        elif S < self.sell_threshold:
+        elif S < self.sell_threshold or single_sell:
             decision = "SELL"
         else:
             decision = "HOLD"
