@@ -27,6 +27,11 @@ cron.log
 frame_*.png
 *.mp4
 
+# Visualizer generierte Assets (nur Quell-SVGs + Skripte ins Repo)
+orchestra/visualizer/*.png
+orchestra/visualizer/*.mp4
+orchestra/visualizer/*.gif
+
 # IDE
 .vscode/
 .idea/

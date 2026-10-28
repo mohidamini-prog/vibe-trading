@@ -117,6 +117,26 @@ def assess_risk(symbol):
         reasons.append(f"EARNINGS in {days_until} Tag(en) ({date_str}) — VETO")
         confidence = max(confidence, 0.9)
 
+    # 1b. RESEARCH-KONTEXT: Analysten-Prognosen, Bewertung, EPS-Schätzungen.
+    #     Vetos werden kontextualisiert (nicht aufgehoben, aber begründet),
+    #     und bei eindeutig bullischem Research wird die Konfidenz differenziert.
+    try:
+        from orchestra.research_robot import assess_research
+        research = assess_research(symbol)
+    except Exception as e:
+        log_error(f"research_robot {symbol}", e)
+        research = {"direction": 0, "confidence": 0.0, "reasons": []}
+    research_reasons = research.get("reasons", [])
+    if research_reasons:
+        reasons.extend(research_reasons)
+    # Research als Verstärker: nur wenn KEIN Veto, sonst nur Kontext
+    if not veto and research.get("direction", 0) != 0:
+        direction = research["direction"]
+        confidence = max(confidence, research.get("confidence", 0.0))
+    elif research.get("direction", 0) != 0:
+        # Veto aktiv: Research begründet, aber hebt nicht auf. Konfidenz leicht modulieren.
+        confidence = max(confidence, min(0.95, confidence + research.get("confidence", 0.0) * 0.05))
+
     # 2. EDGAR-Insider
     insider = check_insider_activity(symbol)
     if insider.get("cluster"):

@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="800" viewBox="0 0 1000 800" font-family="Segoe UI, sans-serif">
+  <defs>
+    <linearGradient id="w1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1e2a4a"/><stop offset="1" stop-color="#141d3d"/></linearGradient>
+    <linearGradient id="w2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#182347"/><stop offset="1" stop-color="#141d3d"/></linearGradient>
+    <linearGradient id="fl" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1a2440"/><stop offset="1" stop-color="#0e1428"/></linearGradient>
+    <linearGradient id="wood5" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8b5e3c"/><stop offset="1" stop-color="#6d4a2f"/></linearGradient>
+    <radialGradient id="light5" cx=".5" cy=".5" r=".6"><stop offset="0" stop-color="#fbbf24" stop-opacity=".45"/><stop offset="1" stop-color="#fbbf24" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1000" height="800" fill="#0a0f22"/>
+  <path d="M 120 120 L 500 40 L 500 520 L 120 600 Z" fill="url(#w1)" stroke="#2a3a66" stroke-width="2"/>
+  <path d="M 500 40 L 880 120 L 880 600 L 500 520 Z" fill="url(#w2)" stroke="#2a3a66" stroke-width="2"/>
+  <path d="M 120 600 L 500 520 L 880 600 L 500 680 Z" fill="url(#fl)" stroke="#2a3a66" stroke-width="2"/>
+  <g stroke="#2a3a66" stroke-width="1" opacity=".6">
+    <path d="M 220 580 L 500 520 L 780 580 L 500 640 Z" fill="none"/>
+    <path d="M 320 560 L 500 520 L 680 560 L 500 600 Z" fill="none"/>
+  </g>
+
+  <!-- Boards: RISK -->
+  <g transform="translate(200,110)">
+    <path d="M 0 0 L 130 -28 L 130 100 L 0 128 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="10" y="20" fill="#0f172a" font-size="15" font-weight="bold" transform="skewY(-12)">POS SIZE</text>
+    <text x="30" y="60" fill="#0f172a" font-size="14" transform="skewY(-12)">max 7%</text>
+  </g>
+  <g transform="translate(360,80)">
+    <path d="M 0 0 L 130 -28 L 130 100 L 0 128 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="10" y="20" fill="#0f172a" font-size="15" font-weight="bold" transform="skewY(-12)">EXPOSURE</text>
+    <text x="30" y="60" fill="#0f172a" font-size="14" transform="skewY(-12)">max 5 pos</text>
+  </g>
+  <g transform="translate(520,110)">
+    <path d="M 0 0 L 130 -28 L 130 100 L 0 128 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="10" y="20" fill="#0f172a" font-size="15" font-weight="bold" transform="skewY(-12)">LOSS LIMIT</text>
+    <text x="30" y="60" fill="#0f172a" font-size="14" transform="skewY(-12)">SL/TP S+R</text>
+  </g>
+
+  <g transform="translate(130,250)">
+    <path d="M 0 0 L 70 -18 L 70 240 L 0 258 Z" fill="#0f172a" stroke="#1e293b"/>
+    <rect x="8" y="18" width="12" height="44" fill="#ef4444" transform="skewY(-14)"/>
+    <rect x="24" y="16" width="12" height="46" fill="#38bdf8" transform="skewY(-14)"/>
+    <rect x="40" y="20" width="12" height="42" fill="#facc15" transform="skewY(-14)"/>
+  </g>
+  <g transform="translate(140,500)">
+    <path d="M 0 0 L 26 -7 L 26 44 L 0 51 Z" fill="#4a5568"/>
+    <path d="M 13 -7 Q -4 -36 8 -54 Q 22 -36 13 -7" fill="#22c55e"/>
+  </g>
+
+  <g transform="translate(290,390)">
+    <path d="M 0 55 L 170 27 L 360 55 L 190 82 Z" fill="url(#wood5)" stroke="#5a3a22" stroke-width="2"/>
+    <path d="M 0 55 L 190 82 L 190 92 L 0 65 Z" fill="#4a2f1d"/>
+    <path d="M 190 82 L 360 55 L 360 65 L 190 92 Z" fill="#4a2f1d"/>
+    <path d="M 20 65 L 20 145 L 28 147 L 28 67 Z" fill="#3a2418"/>
+    <path d="M 170 87 L 170 155 L 178 153 L 178 89 Z" fill="#3a2418"/>
+  </g>
+
+  <!-- Risk-Gauge auf Tisch -->
+  <g transform="translate(355,395)">
+    <path d="M 0 0 L 75 -19 L 75 45 L 0 64 Z" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+    <path d="M 20 30 A 18 18 0 0 1 55 24" fill="none" stroke="#a78bfa" stroke-width="3"/>
+    <line x1="38" y1="27" x2="42" y2="16" stroke="#a78bfa" stroke-width="2"/>
+    <circle cx="38" cy="27" r="3" fill="#a78bfa"/>
+  </g>
+
+  <!-- 3 Figuren (Risk: lila, blau, gelb) -->
+  <g transform="translate(270,480)">
+    <path d="M 0 0 L 38 -10 L 38 65 L 0 75 Z" fill="#1e293b" stroke="#334155"/>
+    <path d="M 10 -38 L 48 -48 L 48 8 L 10 18 Z" fill="#a78bfa" stroke="#8b5cf6" stroke-width="2"/>
+    <path d="M 17 -66 L 45 -73 L 45 -48 L 17 -41 Z" fill="#c4b5fd" stroke="#8b5cf6" stroke-width="2"/>
+    <path d="M 19 -61 L 43 -67 L 43 -53 L 19 -47 Z" fill="#0f172a"/>
+  </g>
+  <g transform="translate(415,470)">
+    <path d="M 0 0 L 38 -10 L 38 65 L 0 75 Z" fill="#1e293b" stroke="#334155"/>
+    <path d="M 10 -38 L 48 -48 L 48 8 L 10 18 Z" fill="#38bdf8" stroke="#0ea5e9" stroke-width="2"/>
+    <path d="M 17 -66 L 45 -73 L 45 -48 L 17 -41 Z" fill="#7dd3fc" stroke="#0ea5e9" stroke-width="2"/>
+    <path d="M 19 -61 L 43 -67 L 43 -53 L 19 -47 Z" fill="#0f172a"/>
+  </g>
+  <g transform="translate(560,490)">
+    <path d="M 0 0 L 38 -10 L 38 65 L 0 75 Z" fill="#1e293b" stroke="#334155"/>
+    <path d="M 10 -38 L 48 -48 L 48 8 L 10 18 Z" fill="#facc15" stroke="#eab308" stroke-width="2"/>
+    <path d="M 17 -66 L 45 -73 L 45 -48 L 17 -41 Z" fill="#fde047" stroke="#eab308" stroke-width="2"/>
+    <path d="M 19 -61 L 43 -67 L 43 -53 L 19 -47 Z" fill="#0f172a"/>
+  </g>
+
+  <ellipse cx="500" cy="300" rx="260" ry="160" fill="url(#light5)" opacity=".3"/>
+  <g>
+    <path d="M 220 700 L 780 640 L 780 670 L 220 730 Z" fill="#0f172a" stroke="#a78bfa" stroke-width="2"/>
+    <text x="500" y="680" text-anchor="middle" fill="#a78bfa" font-size="26" font-weight="bold" transform="skewY(-6)">05 | RISK</text>
+  </g>
+</svg>

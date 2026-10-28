@@ -1,0 +1,179 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="800" viewBox="0 0 1000 800" font-family="Segoe UI, sans-serif">
+  <defs>
+    <!-- Isometrische Farben -->
+    <linearGradient id="wallGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1e2a4a"/><stop offset="1" stop-color="#141d3d"/>
+    </linearGradient>
+    <linearGradient id="floorGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1a2440"/><stop offset="1" stop-color="#0e1428"/>
+    </linearGradient>
+    <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#8b5e3c"/><stop offset="1" stop-color="#6d4a2f"/>
+    </linearGradient>
+    <radialGradient id="ceilingLight" cx=".5" cy=".5" r=".6">
+      <stop offset="0" stop-color="#fbbf24" stop-opacity=".5"/><stop offset="1" stop-color="#fbbf24" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- HINTERGRUND: dunkler Raum -->
+  <rect width="1000" height="800" fill="#0a0f22"/>
+
+  <!-- ===== ISOMETRISCHE WÄNDE ===== -->
+  <!-- Linke Wand (von oben-links nach unten-rechts) -->
+  <path d="M 120 120 L 500 40 L 500 520 L 120 600 Z" fill="url(#wallGrad)" stroke="#2a3a66" stroke-width="2"/>
+  <!-- Rechte Wand -->
+  <path d="M 500 40 L 880 120 L 880 600 L 500 520 Z" fill="#182347" stroke="#2a3a66" stroke-width="2"/>
+
+  <!-- ===== SCHACHBRETT-BODEN (isometrisch) ===== -->
+  <g>
+    <path d="M 120 600 L 500 520 L 880 600 L 500 680 Z" fill="url(#floorGrad)" stroke="#2a3a66" stroke-width="2"/>
+    <!-- Rauten-Muster -->
+    <g stroke="#2a3a66" stroke-width="1" opacity=".6">
+      <path d="M 220 580 L 500 520 L 780 580 L 500 640 Z" fill="none"/>
+      <path d="M 320 560 L 500 520 L 680 560 L 500 600 Z" fill="none"/>
+      <path d="M 170 590 L 500 540 L 830 590 L 500 660 Z" fill="none"/>
+    </g>
+  </g>
+
+  <!-- ===== WAND-BOARDS (3 Stück) ===== -->
+  <!-- Board 1: SOURCES -->
+  <g transform="translate(170,110)">
+    <path d="M 0 0 L 140 -30 L 140 120 L 0 150 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="10" y="22" fill="#0f172a" font-size="16" font-weight="bold" transform="skewY(-12)">SOURCES</text>
+    <!-- Haftnotizen -->
+    <rect x="20" y="40" width="26" height="26" fill="#facc15" transform="skewY(-12)"/>
+    <rect x="55" y="35" width="26" height="26" fill="#f472b6" transform="skewY(-12)"/>
+    <rect x="90" y="48" width="26" height="26" fill="#38bdf8" transform="skewY(-12)"/>
+    <text x="30" y="62" fill="#0f172a" font-size="20" font-weight="bold" transform="skewY(-12)">?</text>
+  </g>
+  <!-- Board 2: CATALYSTS -->
+  <g transform="translate(330,80)">
+    <path d="M 0 0 L 140 -30 L 140 120 L 0 150 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="10" y="22" fill="#0f172a" font-size="16" font-weight="bold" transform="skewY(-12)">CATALYSTS</text>
+    <rect x="30" y="42" width="26" height="26" fill="#a78bfa" transform="skewY(-12)"/>
+    <rect x="65" y="38" width="26" height="26" fill="#facc15" transform="skewY(-12)"/>
+    <rect x="100" y="45" width="26" height="26" fill="#38bdf8" transform="skewY(-12)"/>
+    <!-- Lila Pfeil nach oben -->
+    <path d="M 70 100 L 78 82 L 86 100 Z" fill="#a78bfa" transform="skewY(-12)"/>
+  </g>
+  <!-- Board 3: COUNTERPOINTS -->
+  <g transform="translate(490,110)">
+    <path d="M 0 0 L 140 -30 L 140 120 L 0 150 Z" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/>
+    <text x="10" y="22" fill="#0f172a" font-size="16" font-weight="bold" transform="skewY(-12)">COUNTERPOINTS</text>
+    <rect x="25" y="40" width="26" height="26" fill="#f472b6" transform="skewY(-12)"/>
+    <rect x="60" y="36" width="26" height="26" fill="#38bdf8" transform="skewY(-12)"/>
+    <rect x="95" y="48" width="26" height="26" fill="#facc15" transform="skewY(-12)"/>
+    <!-- Roter Pfeil nach unten -->
+    <path d="M 70 88 L 78 106 L 86 88 Z" fill="#ef4444" transform="skewY(-12)"/>
+  </g>
+
+  <!-- ===== BÜCHERREGAL (links) ===== -->
+  <g transform="translate(120,240)">
+    <path d="M 0 0 L 80 -20 L 80 280 L 0 300 Z" fill="#0f172a" stroke="#1e293b" stroke-width="2"/>
+    <!-- Bücher -->
+    <rect x="8" y="20" width="14" height="50" fill="#fb923c" transform="skewY(-14)"/>
+    <rect x="26" y="18" width="12" height="52" fill="#38bdf8" transform="skewY(-14)"/>
+    <rect x="42" y="22" width="14" height="48" fill="#f8fafc" transform="skewY(-14)"/>
+    <rect x="8" y="90" width="16" height="48" fill="#f472b6" transform="skewY(-14)"/>
+    <rect x="28" y="92" width="12" height="46" fill="#facc15" transform="skewY(-14)"/>
+    <rect x="44" y="95" width="14" height="43" fill="#38bdf8" transform="skewY(-14)"/>
+    <rect x="8" y="160" width="14" height="48" fill="#a78bfa" transform="skewY(-14)"/>
+    <rect x="26" y="162" width="12" height="46" fill="#fb923c" transform="skewY(-14)"/>
+  </g>
+
+  <!-- ===== PFLANZE (links, Boden) ===== -->
+  <g transform="translate(130,540)">
+    <path d="M 0 0 L 30 -8 L 30 50 L 0 58 Z" fill="#4a5568"/>
+    <path d="M 15 -8 Q -5 -40 10 -60 Q 25 -40 15 -8" fill="#22c55e"/>
+    <path d="M 15 -8 Q 35 -35 25 -55 Q 5 -35 15 -8" fill="#16a34a"/>
+  </g>
+
+  <!-- ===== IDEA-SCHACHT (rechts, mit orangenem Licht) ===== -->
+  <g transform="translate(760,180)">
+    <path d="M 0 0 L 100 -25 L 100 320 L 0 345 Z" fill="#0f172a" stroke="#1e293b" stroke-width="2"/>
+    <!-- Oranges Licht innen -->
+    <rect x="10" y="20" width="80" height="280" fill="#f97316" opacity=".15" filter="url(#softGlow)"/>
+    <!-- IDEA-Box -->
+    <path d="M 20 220 L 80 205 L 80 260 L 20 275 Z" fill="#1d4ed8" stroke="#3b82f6" stroke-width="2"/>
+    <text x="50" y="245" text-anchor="middle" fill="#fff" font-size="14" font-weight="bold" transform="skewY(-11)">IDEA</text>
+    <path d="M 50 195 L 56 178 L 44 178 Z" fill="#3b82f6"/>
+    <line x1="50" y1="205" x2="50" y2="180" stroke="#3b82f6" stroke-width="3"/>
+  </g>
+
+  <!-- ===== SCHREIBTISCH (braunes Holz, isometrisch) ===== -->
+  <g transform="translate(280,380)">
+    <!-- Tischplatte (Rauten-Oberfläche) -->
+    <path d="M 0 60 L 180 30 L 380 60 L 200 90 Z" fill="url(#wood)" stroke="#5a3a22" stroke-width="2"/>
+    <!-- Tischplatte Dicke -->
+    <path d="M 0 60 L 200 90 L 200 100 L 0 70 Z" fill="#4a2f1d"/>
+    <path d="M 200 90 L 380 60 L 380 70 L 200 100 Z" fill="#4a2f1d"/>
+    <!-- Tischbeine -->
+    <path d="M 20 70 L 20 150 L 28 152 L 28 72 Z" fill="#3a2418"/>
+    <path d="M 180 95 L 180 160 L 188 158 L 188 92 Z" fill="#3a2418"/>
+  </g>
+
+  <!-- Laptop auf Tisch -->
+  <g transform="translate(360,400)">
+    <!-- Bildschirm -->
+    <path d="M 0 0 L 70 -18 L 70 42 L 0 60 Z" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+    <path d="M 4 4 L 66 -13 L 66 38 L 4 55 Z" fill="#38bdf8" opacity=".8"/>
+    <!-- Tastatur -->
+    <path d="M 8 55 L 75 38 L 78 44 L 10 62 Z" fill="#1e293b"/>
+  </g>
+
+  <!-- Kaffee -->
+  <g transform="translate(470,425)">
+    <path d="M 0 0 L 18 -5 L 18 18 L 0 23 Z" fill="#78350f"/>
+    <ellipse cx="9" cy="3" rx="9" ry="4" fill="#451a03" transform="skewY(-14)"/>
+  </g>
+
+  <!-- Papiere auf Tisch -->
+  <path d="M 330 430 L 370 420 L 372 435 L 332 445 Z" fill="#f8fafc" stroke="#cbd5e1"/>
+
+  <!-- ===== DREI BLOCKFIGUREN ===== -->
+  <!-- Figur 1: LILA (links, liest Dokument) -->
+  <g transform="translate(260,470)">
+    <!-- Stuhl -->
+    <path d="M 0 0 L 40 -10 L 40 70 L 0 80 Z" fill="#1e293b" stroke="#334155"/>
+    <path d="M 0 0 L 40 -10 L 40 5 L 0 15 Z" fill="#2d3748"/>
+    <!-- Körper (blockig) -->
+    <path d="M 10 -40 L 50 -50 L 50 10 L 10 20 Z" fill="#a78bfa" stroke="#8b5cf6" stroke-width="2"/>
+    <!-- Kopf (blockig) -->
+    <path d="M 18 -70 L 48 -77 L 48 -50 L 18 -43 Z" fill="#c4b5fd" stroke="#8b5cf6" stroke-width="2"/>
+    <!-- Visier -->
+    <path d="M 20 -65 L 46 -71 L 46 -56 L 20 -50 Z" fill="#0f172a"/>
+    <!-- Dokument in Händen -->
+    <path d="M 40 -10 L 60 -15 L 60 5 L 40 10 Z" fill="#f8fafc" stroke="#cbd5e1"/>
+  </g>
+
+  <!-- Figur 2: GELB (Mitte, arbeitet am Laptop) -->
+  <g transform="translate(410,460)">
+    <path d="M 0 0 L 40 -10 L 40 70 L 0 80 Z" fill="#1e293b" stroke="#334155"/>
+    <path d="M 0 0 L 40 -10 L 40 5 L 0 15 Z" fill="#2d3748"/>
+    <path d="M 10 -40 L 50 -50 L 50 10 L 10 20 Z" fill="#facc15" stroke="#eab308" stroke-width="2"/>
+    <path d="M 18 -70 L 48 -77 L 48 -50 L 18 -43 Z" fill="#fde047" stroke="#eab308" stroke-width="2"/>
+    <path d="M 20 -65 L 46 -71 L 46 -56 L 20 -50 Z" fill="#0f172a"/>
+  </g>
+
+  <!-- Figur 3: BLAU (rechts, liest Dokument) -->
+  <g transform="translate(560,480)">
+    <path d="M 0 0 L 40 -10 L 40 70 L 0 80 Z" fill="#1e293b" stroke="#334155"/>
+    <path d="M 0 0 L 40 -10 L 40 5 L 0 15 Z" fill="#2d3748"/>
+    <path d="M 10 -40 L 50 -50 L 50 10 L 10 20 Z" fill="#38bdf8" stroke="#0ea5e9" stroke-width="2"/>
+    <path d="M 18 -70 L 48 -77 L 48 -50 L 18 -43 Z" fill="#7dd3fc" stroke="#0ea5e9" stroke-width="2"/>
+    <path d="M 20 -65 L 46 -71 L 46 -56 L 20 -50 Z" fill="#0f172a"/>
+    <path d="M 40 -10 L 60 -15 L 60 5 L 40 10 Z" fill="#f8fafc" stroke="#cbd5e1"/>
+  </g>
+
+  <!-- ===== DECKE-LICHT ===== -->
+  <ellipse cx="500" cy="300" rx="260" ry="160" fill="url(#ceilingLight)" opacity=".3"/>
+
+  <!-- ===== FLOOR-BANNER (unten) ===== -->
+  <g>
+    <path d="M 220 700 L 780 640 L 780 670 L 220 730 Z" fill="#0f172a" stroke="#7c5cff" stroke-width="2"/>
+    <text x="500" y="680" text-anchor="middle" fill="#7c5cff" font-size="26" font-weight="bold" transform="skewY(-6)">02 | RESEARCH</text>
+  </g>
+</svg>

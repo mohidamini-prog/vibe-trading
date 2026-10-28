@@ -23,6 +23,14 @@ class NewsAgent(BaseAgent):
         if earnings_soon:
             return self._make(0, 0.9, "VETO: Earnings morgen", veto=True, earnings=True)
 
+        # News-Headlines: falls leer, selbst vom Yahoo-RSS-Feed holen (Research-Roboter)
+        if not headlines:
+            try:
+                from orchestra.research_robot import news_sentiment
+                _, n_head, headlines = news_sentiment(symbol)
+            except Exception:
+                pass
+
         # News-Sentiment (nur Titel, datenarm)
         sentiment, n = tier3.headline_sentiment(headlines)
 

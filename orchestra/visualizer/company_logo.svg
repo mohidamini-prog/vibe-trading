@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 200" width="820" height="200" role="img" aria-label="Vibe Trading Firm logo">
+  <defs>
+    <linearGradient id="titleGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#7c5cff"/>
+      <stop offset="55%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
+    </linearGradient>
+    <linearGradient id="robotGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#7c5cff"/>
+    </linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="softGlow" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect x="0" y="0" width="820" height="200" rx="24" fill="#0b1026"/>
+  <rect x="1.5" y="1.5" width="817" height="197" rx="22.5" fill="none" stroke="#7c5cff" stroke-opacity="0.35" stroke-width="1.5"/>
+
+  <!-- Accent dots -->
+  <circle cx="790" cy="26" r="2.5" fill="#38bdf8" opacity="0.8"/>
+  <circle cx="768" cy="40" r="1.8" fill="#7c5cff" opacity="0.6"/>
+  <circle cx="806" cy="56" r="1.5" fill="#38bdf8" opacity="0.5"/>
+
+  <!-- ================= ROBOT MASCOT ================= -->
+  <g filter="url(#softGlow)">
+    <!-- Antenna -->
+    <line x1="100" y1="40" x2="100" y2="26" stroke="#7c5cff" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="100" cy="22" r="5" fill="#38bdf8" filter="url(#glow)"/>
+    <!-- Head -->
+    <circle cx="100" cy="62" r="25" fill="#111a3d" stroke="url(#robotGrad)" stroke-width="3"/>
+    <!-- Visor -->
+    <rect x="81" y="53" width="38" height="18" rx="9" fill="#38bdf8" opacity="0.95" filter="url(#glow)"/>
+    <rect x="86" y="57" width="10" height="4" rx="2" fill="#e0f2fe" opacity="0.9"/>
+    <!-- Ears -->
+    <rect x="71" y="54" width="6" height="14" rx="3" fill="#7c5cff"/>
+    <rect x="123" y="54" width="6" height="14" rx="3" fill="#7c5cff"/>
+    <!-- Body (capsule) -->
+    <rect x="76" y="92" width="48" height="52" rx="24" fill="#111a3d" stroke="url(#robotGrad)" stroke-width="3"/>
+    <!-- Body accents -->
+    <circle cx="100" cy="110" r="6" fill="#7c5cff" opacity="0.9"/>
+    <circle cx="100" cy="130" r="6" fill="#38bdf8" opacity="0.9"/>
+    <!-- Arms -->
+    <line x1="76" y1="102" x2="62" y2="112" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+    <line x1="124" y1="102" x2="138" y2="112" stroke="#38bdf8" stroke-width="4" stroke-linecap="round"/>
+  </g>
+
+  <!-- ================= TEXT ================= -->
+  <g font-family="'Segoe UI', 'Helvetica Neue', Arial, sans-serif">
+    <!-- Title -->
+    <text x="185" y="102" font-size="46" font-weight="800" letter-spacing="2" fill="url(#titleGrad)" filter="url(#glow)">VIBE TRADING FIRM</text>
+    <!-- Subtitle -->
+    <text x="187" y="140" font-size="19" font-weight="500" letter-spacing="1" fill="#8b93b8">6 Floors &#183; 5 Agents &#183; Alpaca + DE Paper</text>
+  </g>
+</svg>

@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="560" viewBox="0 0 900 560" font-family="Segoe UI, sans-serif">
+  <defs>
+    <linearGradient id="bg13" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b1026"/><stop offset="1" stop-color="#141a3a"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="560" fill="url(#bg13)"/>
+
+  <!-- FLOOR 01: SCANNER -->
+  <g transform="translate(20,15)">
+    <rect width="860" height="165" rx="10" fill="#0f172a" stroke="#facc15" stroke-width="1.5"/>
+    <text x="20" y="30" fill="#facc15" font-size="18" font-weight="bold">FLOOR 01 — SCANNER</text>
+    <text x="20" y="50" fill="#94a3b8" font-size="11">FIRST, FIND A MOVE WORTH INVESTIGATING · 14 symbols · 2 timeframes</text>
+    <rect x="20" y="65" width="190" height="80" rx="6" fill="#1e293b" stroke="#facc15" stroke-width="1"/>
+    <text x="115" y="90" text-anchor="middle" fill="#facc15" font-size="13" font-weight="bold">SCANNER</text>
+    <text x="115" y="115" text-anchor="middle" fill="#e2e8f0" font-size="11">4h + 1d</text>
+    <text x="115" y="133" text-anchor="middle" fill="#64748b" font-size="10">US + DE universum</text>
+    <rect x="230" y="65" width="190" height="80" rx="6" fill="#1e293b" stroke="#facc15" stroke-width="1"/>
+    <text x="325" y="90" text-anchor="middle" fill="#facc15" font-size="13" font-weight="bold">IDEA</text>
+    <text x="325" y="115" text-anchor="middle" fill="#e2e8f0" font-size="11">signals found</text>
+    <text x="325" y="133" text-anchor="middle" fill="#64748b" font-size="10">52W / SR / Fib</text>
+    <rect x="440" y="65" width="190" height="80" rx="6" fill="#1e293b" stroke="#facc15" stroke-width="1"/>
+    <text x="535" y="90" text-anchor="middle" fill="#facc15" font-size="13" font-weight="bold">QUALITY GATE</text>
+    <text x="535" y="115" text-anchor="middle" fill="#e2e8f0" font-size="11">vol &gt; 1.25x med</text>
+    <text x="535" y="133" text-anchor="middle" fill="#64748b" font-size="10">smart money only</text>
+    <!-- Robot (Scanner) -->
+    <g transform="translate(700,95)">
+      <path d="M -14 0 A 14 14 0 0 1 14 0" fill="none" stroke="#facc15" stroke-width="4"/>
+      <rect x="-17" y="-2" width="6" height="12" rx="2" fill="#facc15"/>
+      <rect x="11" y="-2" width="6" height="12" rx="2" fill="#facc15"/>
+      <rect x="-16" y="4" width="32" height="32" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
+      <circle cx="0" cy="12" r="12" fill="#fff" stroke="#cbd5e1"/>
+      <rect x="-9" y="6" width="18" height="9" rx="4" fill="#0f172a"/>
+      <circle cx="-3.5" cy="10.5" r="2" fill="#facc15"/>
+      <circle cx="3.5" cy="10.5" r="2" fill="#facc15"/>
+    </g>
+  </g>
+
+  <!-- FLOOR 02: RESEARCH -->
+  <g transform="translate(20,190)">
+    <rect width="860" height="165" rx="10" fill="#0f172a" stroke="#38bdf8" stroke-width="1.5"/>
+    <text x="20" y="30" fill="#38bdf8" font-size="18" font-weight="bold">FLOOR 02 — RESEARCH</text>
+    <text x="20" y="50" fill="#94a3b8" font-size="11">CHECK THE STORY BEHIND THE MOVE · Sources · Catalysts · Counterpoints</text>
+    <rect x="20" y="65" width="190" height="80" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+    <text x="115" y="90" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="bold">SOURCES</text>
+    <text x="115" y="115" text-anchor="middle" fill="#e2e8f0" font-size="11">volume / trend</text>
+    <text x="115" y="133" text-anchor="middle" fill="#64748b" font-size="10">EMA 50 &gt; 200</text>
+    <rect x="230" y="65" width="190" height="80" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+    <text x="325" y="90" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="bold">CATALYSTS</text>
+    <text x="325" y="115" text-anchor="middle" fill="#e2e8f0" font-size="11">52W high / SR</text>
+    <text x="325" y="133" text-anchor="middle" fill="#64748b" font-size="10">breakout conf</text>
+    <rect x="440" y="65" width="190" height="80" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1"/>
+    <text x="535" y="90" text-anchor="middle" fill="#38bdf8" font-size="13" font-weight="bold">COUNTERPOINTS</text>
+    <text x="535" y="115" text-anchor="middle" fill="#e2e8f0" font-size="11">earnings risk</text>
+    <text x="535" y="133" text-anchor="middle" fill="#64748b" font-size="10">insider sells</text>
+    <!-- Robot (Research) -->
+    <g transform="translate(700,95)">
+      <path d="M -14 0 A 14 14 0 0 1 14 0" fill="none" stroke="#38bdf8" stroke-width="4"/>
+      <rect x="-17" y="-2" width="6" height="12" rx="2" fill="#38bdf8"/>
+      <rect x="11" y="-2" width="6" height="12" rx="2" fill="#38bdf8"/>
+      <rect x="-16" y="4" width="32" height="32" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
+      <circle cx="0" cy="12" r="12" fill="#fff" stroke="#cbd5e1"/>
+      <rect x="-9" y="6" width="18" height="9" rx="4" fill="#0f172a"/>
+      <circle cx="-3.5" cy="10.5" r="2" fill="#38bdf8"/>
+      <circle cx="3.5" cy="10.5" r="2" fill="#38bdf8"/>
+    </g>
+  </g>
+
+  <!-- FLOOR 03: STRATEGY -->
+  <g transform="translate(20,365)">
+    <rect width="860" height="165" rx="10" fill="#0f172a" stroke="#a78bfa" stroke-width="1.5"/>
+    <text x="20" y="30" fill="#a78bfa" font-size="18" font-weight="bold">FLOOR 03 — STRATEGY</text>
+    <text x="20" y="50" fill="#94a3b8" font-size="11">TURN THE IDEA INTO CLEAR RULES · Entry · Exit · Invalidation</text>
+    <rect x="20" y="65" width="190" height="80" rx="6" fill="#1e293b" stroke="#a78bfa" stroke-width="1"/>
+    <text x="115" y="90" text-anchor="middle" fill="#a78bfa" font-size="13" font-weight="bold">ENTRY</text>
+    <text x="115" y="115" text-anchor="middle" fill="#e2e8f0" font-size="11">SR flip / 52W</text>
+    <text x="115" y="133" text-anchor="middle" fill="#64748b" font-size="10">alpha core 60/40</text>
+    <rect x="230" y="65" width="190" height="80" rx="6" fill="#1e293b" stroke="#a78bfa" stroke-width="1"/>
+    <text x="325" y="90" text-anchor="middle" fill="#a78bfa" font-size="13" font-weight="bold">EXIT</text>
+    <text x="325" y="115" text-anchor="middle" fill="#e2e8f0" font-size="11">SL / TP1 / TP2</text>
+    <text x="325" y="133" text-anchor="middle" fill="#64748b" font-size="10">S/R + Fib levels</text>
+    <rect x="440" y="65" width="190" height="80" rx="6" fill="#1e293b" stroke="#a78bfa" stroke-width="1"/>
+    <text x="535" y="90" text-anchor="middle" fill="#a78bfa" font-size="13" font-weight="bold">INVALIDATION</text>
+    <text x="535" y="115" text-anchor="middle" fill="#e2e8f0" font-size="11">below support</text>
+    <text x="535" y="133" text-anchor="middle" fill="#64748b" font-size="10">setup broken</text>
+    <!-- Robot (Strategy) -->
+    <g transform="translate(700,95)">
+      <path d="M -14 0 A 14 14 0 0 1 14 0" fill="none" stroke="#a78bfa" stroke-width="4"/>
+      <rect x="-17" y="-2" width="6" height="12" rx="2" fill="#a78bfa"/>
+      <rect x="11" y="-2" width="6" height="12" rx="2" fill="#a78bfa"/>
+      <rect x="-16" y="4" width="32" height="32" rx="12" fill="#f8fafc" stroke="#cbd5e1"/>
+      <circle cx="0" cy="12" r="12" fill="#fff" stroke="#cbd5e1"/>
+      <rect x="-9" y="6" width="18" height="9" rx="4" fill="#0f172a"/>
+      <circle cx="-3.5" cy="10.5" r="2" fill="#a78bfa"/>
+      <circle cx="3.5" cy="10.5" r="2" fill="#a78bfa"/>
+    </g>
+  </g>
+</svg>
