@@ -1,0 +1,104 @@
+[
+  {
+    "n_trades": 5,
+    "n_buy": 5,
+    "n_sell": 0,
+    "n_symbols_with_trades": 1,
+    "avg_strength": 0.2407,
+    "sectors_touched": 1,
+    "config_name": "baseline",
+    "config": {
+      "buy_threshold": 0.5,
+      "oder_conf": 0.8,
+      "min_strength": 0.05,
+      "sector_max": 99,
+      "alpha": 0.05,
+      "max_pos": 5
+    }
+  },
+  {
+    "n_trades": 5,
+    "n_buy": 5,
+    "n_sell": 0,
+    "n_symbols_with_trades": 5,
+    "avg_strength": 0.2415,
+    "sectors_touched": 5,
+    "config_name": "tune1_decluster",
+    "config": {
+      "buy_threshold": 0.5,
+      "oder_conf": 0.8,
+      "min_strength": 0.05,
+      "sector_max": 1,
+      "alpha": 0.05,
+      "max_pos": 5
+    }
+  },
+  {
+    "n_trades": 5,
+    "n_buy": 5,
+    "n_sell": 0,
+    "n_symbols_with_trades": 1,
+    "avg_strength": 0.1841,
+    "sectors_touched": 1,
+    "config_name": "tune2_frequency",
+    "config": {
+      "buy_threshold": 0.45,
+      "oder_conf": 0.75,
+      "min_strength": 0.05,
+      "sector_max": 99,
+      "alpha": 0.05,
+      "max_pos": 5
+    }
+  },
+  {
+    "n_trades": 5,
+    "n_buy": 5,
+    "n_sell": 0,
+    "n_symbols_with_trades": 1,
+    "avg_strength": 0.2407,
+    "sectors_touched": 1,
+    "config_name": "tune3_strength",
+    "config": {
+      "buy_threshold": 0.5,
+      "oder_conf": 0.8,
+      "min_strength": 0.08,
+      "sector_max": 99,
+      "alpha": 0.05,
+      "max_pos": 5
+    }
+  },
+  {
+    "n_trades": 5,
+    "n_buy": 5,
+    "n_sell": 0,
+    "n_symbols_with_trades": 1,
+    "avg_strength": 0.2407,
+    "sectors_touched": 1,
+    "config_name": "tune4_weights",
+    "config": {
+      "buy_threshold": 0.5,
+      "oder_conf": 0.8,
+      "min_strength": 0.05,
+      "sector_max": 99,
+      "alpha": 0.2,
+      "max_pos": 5
+    }
+  },
+  {
+    "n_trades": 5,
+    "n_buy": 5,
+    "n_sell": 0,
+    "n_symbols_with_trades": 5,
+    "avg_strength": 0.0971,
+    "sectors_touched": 5,
+    "config_name": "tune_all",
+    "config": {
+      "buy_threshold": 0.45,
+      "oder_conf": 0.75,
+      "min_strength": 0.08,
+      "sector_max": 1,
+      "alpha": 0.2,
+      "max_pos": 5
+    }
+  }
+]
