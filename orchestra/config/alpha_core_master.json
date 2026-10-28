@@ -1,0 +1,33 @@
+{
+    "version": "3.0",
+    "updated_at": "2026-10-27T22:48:44.672586",
+    "philosophy": "Quality over Quantity: High-conviction Swing Trading on 4h & Daily charts.",
+    "core_engines": [
+        {
+            "name": "New 52W High Momentum",
+            "weight": 0.6,
+            "timeframe": "1d",
+            "rationale": "Reitet institutionelle Trend-Wellen und Allzeithochs (76%+ historische Rendite im Backtest)."
+        },
+        {
+            "name": "SR Flip Breakout",
+            "weight": 0.4,
+            "timeframe": "1d",
+            "rationale": "Sauberste Trefferquote (54.1%) an getesteten Support/Resistance-Zonen mit Volumen-Konfirmation."
+        }
+    ],
+    "master_indicators": {
+        "trend": [
+            "EMA 50",
+            "EMA 200",
+            "52-Week High/Low"
+        ],
+        "momentum": [
+            "RSI (14 & 2)",
+            "MACD Histogram"
+        ],
+        "volume_quality": [
+            "Volume > 20-period Median (keine Low-Volume-Fakes)"
+        ]
+    }
+}

@@ -4,6 +4,16 @@ __pycache__/
 *.pyc
 *.pyo
 
+# Daten-Cache / Parquet / Altdata
+*.parquet
+orchestra/logs/
+orchestra/data/cache/
+vibe/data/altdata/
+vibe/data/cache/
+cache/
+*.zip
+*.json.gz
+
 # Scanner / Backtest Artefakte
 *.log
 backtest_results.csv

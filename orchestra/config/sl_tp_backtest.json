@@ -1,0 +1,52 @@
+[
+  {
+    "timeframe": "1d",
+    "model": "new_52w_high_momentum",
+    "n_trades": 73,
+    "hit_rate": 0.5068,
+    "avg_ret": 0.0126,
+    "total_ret": 0.917,
+    "wins": 37,
+    "losses": 27
+  },
+  {
+    "timeframe": "1d",
+    "model": "sr_flip_breakout",
+    "n_trades": 169,
+    "hit_rate": 0.5325,
+    "avg_ret": 0.0148,
+    "total_ret": 2.5069,
+    "wins": 90,
+    "losses": 62
+  },
+  {
+    "timeframe": "4h",
+    "model": "new_52w_high_momentum",
+    "n_trades": 40,
+    "hit_rate": 0.45,
+    "avg_ret": -0.0037,
+    "total_ret": -0.1459,
+    "wins": 18,
+    "losses": 15
+  },
+  {
+    "timeframe": "4h",
+    "model": "sr_flip_breakout",
+    "n_trades": 133,
+    "hit_rate": 0.4887,
+    "avg_ret": 0.0028,
+    "total_ret": 0.3756,
+    "wins": 65,
+    "losses": 49
+  },
+  {
+    "timeframe": "4h",
+    "model": "deep_value_bounce_52w",
+    "n_trades": 1,
+    "hit_rate": 1.0,
+    "avg_ret": 0.0326,
+    "total_ret": 0.0326,
+    "wins": 1,
+    "losses": 0
+  }
+]

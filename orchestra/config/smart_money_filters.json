@@ -1,0 +1,27 @@
+{
+    "version": "1.0",
+    "updated_at": "2026-10-27T22:50:54.434860",
+    "description": "Erweiterte Smart-Money Signalfilter f\u00fcr maximale Qualit\u00e4t (Null Rauschen)",
+    "filters": {
+        "volume_quality_filter": {
+            "enabled": true,
+            "rule": "Volume > 1.25 * rolling_median(Volume, 20)",
+            "purpose": "Filtert Low-Volume Fakes und best\u00e4tigt institutionellen Block-Trade."
+        },
+        "trend_macro_filter": {
+            "enabled": true,
+            "rule": "Close > EMA_50 > EMA_200",
+            "purpose": "Verhindert Short-Trades in Bullenm\u00e4rkten und Long-Trades in B\u00e4renm\u00e4rkten."
+        },
+        "volatility_atr_filter": {
+            "enabled": true,
+            "rule": "ATR(14) > rolling_median(ATR(14), 50) * 0.8",
+            "purpose": "Vermeidet Seitw\u00e4rtsm\u00e4rkte ohne Dynamik (sch\u00fctzt vor Chop-Losses)."
+        },
+        "spread_gap_guard": {
+            "enabled": true,
+            "rule": "Avoid entries on excessive opening gaps (> 2 * ATR)",
+            "purpose": "Sch\u00fctzt vor unvorhersehbaren Earnings-Gaps bei US/DE Aktien."
+        }
+    }
+}

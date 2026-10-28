@@ -1,0 +1,39 @@
+{
+    "updated_at": "2026-10-27T22:25:06.457537",
+    "top_models": [
+        {
+            "name": "sr_flip_breakout",
+            "timeframe": "1d",
+            "hit_rate": 0.541,
+            "sharpe": 0.29,
+            "description": "Support/Resistance Flip mit Volumenbest\u00e4tigung im Trend"
+        },
+        {
+            "name": "bb_squeeze_expansion",
+            "timeframe": "1d",
+            "hit_rate": 0.52,
+            "sharpe": 0.19,
+            "description": "Bollinger Squeeze & Volatilit\u00e4ts-Breakout"
+        },
+        {
+            "name": "momentum_rsi",
+            "timeframe": "1d",
+            "hit_rate": 0.507,
+            "sharpe": 0.4,
+            "description": "Klassischer Momentum-RSI (55%+ Gesamtrendite)"
+        },
+        {
+            "name": "meanrev_bb",
+            "timeframe": "1d",
+            "hit_rate": 0.519,
+            "sharpe": 0.35,
+            "description": "Mean Reversion Bollinger Dip-Kauf"
+        }
+    ],
+    "ensemble_weights": {
+        "sr_flip_breakout": 0.35,
+        "bb_squeeze_expansion": 0.25,
+        "momentum_rsi": 0.25,
+        "meanrev_bb": 0.15
+    }
+}

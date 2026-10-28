@@ -1,0 +1,41 @@
+{
+    "version": "2.0",
+    "updated_at": "2026-10-27T22:28:14.354594",
+    "description": "Master-Strategie f\u00fcr Vibe-Trading Orchester (RSI 2/50, MACD, Volume, 52W High/Low)",
+    "primary_strategies": [
+        {
+            "id": "new_52w_high_momentum",
+            "weight": 0.45,
+            "params": {
+                "window_52w": 252,
+                "volume_multiplier": 1.0,
+                "macd_required": true
+            }
+        },
+        {
+            "id": "deep_value_bounce_52w",
+            "weight": 0.35,
+            "params": {
+                "window_52w": 252,
+                "rsi2_threshold": 10,
+                "volume_multiplier": 1.5
+            }
+        },
+        {
+            "id": "rsi_macd_vol_breakout",
+            "weight": 0.2,
+            "params": {
+                "rsi50_min": 50,
+                "rsi2_max": 15,
+                "volume_multiplier": 1.2
+            }
+        }
+    ],
+    "target_universe": [
+        "US",
+        "DE"
+    ],
+    "timeframes": [
+        "1d"
+    ]
+}
